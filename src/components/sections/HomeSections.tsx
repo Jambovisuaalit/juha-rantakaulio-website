@@ -1,25 +1,50 @@
 const services = [
   {
     number: "01",
+    icon: "temp",
     title: "Lämpötilahallitut kuljetukset",
     text: "Kylmä- ja lämpötilaherkkien tuotteiden kuljetukset hallitussa ketjussa lähtöpisteestä määränpäähän.",
   },
   {
     number: "02",
+    icon: "food",
     title: "Elintarvikelogistiikka",
     text: "Pitkä kokemus elintarvikekuljetuksista, joissa aikataulu, hygienia ja lämpötila ratkaisevat.",
   },
   {
     number: "03",
+    icon: "warehouse",
     title: "Terminaali & varastointi",
     text: "Vastaanotto, välivarastointi, lajittelu ja keräily osana samaa logistista kokonaisuutta.",
   },
   {
     number: "04",
+    icon: "route",
     title: "Kokonaislogistiikka",
     text: "Tarvittaessa hoidamme myös sisäistä logistiikkaa, varastonhallintaa ja toimitusketjun välivaiheita.",
   },
 ];
+
+function ServiceIcon({ type }: { type: string }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.7,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  if (type === "temp") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="M9 14.8V5a3 3 0 1 1 6 0v9.8a5 5 0 1 1-6 0Z"/><path {...common} d="M12 8v8"/><path {...common} d="M5 7h2M5 11h2"/></svg>;
+  }
+  if (type === "food") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="M6 3v7M9 3v7M6 7h3M7.5 10v11"/><path {...common} d="M15 3v18M15 3c3 1.5 4 5 4 8h-4"/></svg>;
+  }
+  if (type === "warehouse") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="m3 10 9-6 9 6v10H3Z"/><path {...common} d="M8 20v-6h8v6M8 10h8"/></svg>;
+  }
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="M4 18h4c3 0 3-6 6-6h6"/><path {...common} d="m17 9 3 3-3 3"/><circle {...common} cx="5" cy="6" r="2"/></svg>;
+}
 
 const coldChain = [
   ["LIVE", "Reaaliaikainen seuranta", "Kuljetuslämpötiloja seurataan matkan aikana jatkuvasti."],
@@ -54,7 +79,8 @@ export function HomeSections() {
             {services.map((service) => (
               <article className="service-card" key={service.number}>
                 <span className="service-number">{service.number}</span>
-                <div>
+                <span className="service-icon" aria-hidden="true"><ServiceIcon type={service.icon} /></span>
+                <div className="service-content">
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
                 </div>
