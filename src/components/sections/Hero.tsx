@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
@@ -38,18 +36,19 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-media">
-          <Image
+        <figure className="hero-media">
+          <img
             src="/images/rantakaulio-hero.webp"
             alt="Rantakaulion henkilöstöä lämpötilahallitun kuljetuskaluston edessä"
-            fill
-            priority
-            sizes="(max-width: 980px) 100vw, 58vw"
+            width="760"
+            height="428"
+            fetchPriority="high"
+            decoding="async"
           />
-          <div className="hero-media-label" aria-hidden="true">
+          <figcaption className="hero-media-label">
             <span>Kouvola</span><span>Finland</span>
-          </div>
-        </div>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
