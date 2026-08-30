@@ -38,7 +38,7 @@ export function Hero() {
 
         <figure className="hero-media">
           <img
-            src="/images/rantakaulio-hero.webp"
+            src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/rantakaulio-hero.webp"
             alt="Rantakaulion henkilöstöä lämpötilahallitun kuljetuskaluston edessä"
             width="760"
             height="428"
