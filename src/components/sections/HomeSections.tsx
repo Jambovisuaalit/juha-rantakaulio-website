@@ -29,7 +29,7 @@ function ServiceIcon({ type }: { type: string }) {
   const common = {
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 1.7,
+    strokeWidth: 2,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
   };
@@ -47,11 +47,32 @@ function ServiceIcon({ type }: { type: string }) {
 }
 
 const coldChain = [
-  ["LIVE", "Reaaliaikainen seuranta", "Kuljetuslämpötiloja seurataan matkan aikana jatkuvasti."],
-  ["ATP", "Luokiteltu kalusto", "Kalusto täyttää lämpötilahallittujen kuljetusten vaatimukset."],
-  ["DATA", "Fleetlogis", "Kuljetuksesta jää seurattava tieto laadunvarmistusta varten."],
-  ["CLIENT", "Asiakasnäkyvyys", "Ajankohtaista lämpötilatietoa voidaan tuoda asiakkaan käyttöön."],
+  ["gps", "LIVE", "Reaaliaikainen seuranta", "Kuljetuslämpötiloja seurataan matkan aikana jatkuvasti."],
+  ["atp", "ATP", "Luokiteltu kalusto", "Kalusto täyttää lämpötilahallittujen kuljetusten vaatimukset."],
+  ["data", "DATA", "Fleetlogis", "Kuljetuksesta jää seurattava tieto laadunvarmistusta varten."],
+  ["client", "CLIENT", "Asiakasnäkyvyys", "Ajankohtaista lämpötilatietoa voidaan tuoda asiakkaan käyttöön."],
 ];
+
+function ColdIcon({ type }: { type: string }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  if (type === "gps") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><circle {...common} cx="12" cy="10" r="3"/><path {...common} d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/></svg>;
+  }
+  if (type === "atp") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6Z"/><path {...common} d="m9 12 2 2 4-5"/></svg>;
+  }
+  if (type === "data") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>;
+  }
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path {...common} d="M4 7h16v10H4Z"/><path {...common} d="M8 11h8M8 15h5"/><path {...common} d="m7 7 1.5-3h7L17 7"/></svg>;
+}
 
 const contacts = [
   ["Henri Rantakaulio", "Toimitusjohtaja", "040 729 5278", "henri@rantakaulio.fi"],
@@ -119,9 +140,12 @@ export function HomeSections() {
           </figure>
 
           <div className="cold-facts">
-            {coldChain.map(([tag, title, text]) => (
+            {coldChain.map(([icon, tag, title, text]) => (
               <article key={tag}>
-                <span>{tag}</span>
+                <div className="cold-fact-top">
+                  <span className="cold-icon" aria-hidden="true"><ColdIcon type={icon} /></span>
+                  <span className="cold-tag">{tag}</span>
+                </div>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </article>
