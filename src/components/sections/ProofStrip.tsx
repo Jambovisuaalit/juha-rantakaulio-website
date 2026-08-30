@@ -12,8 +12,8 @@ const proof = [
     label: "luokiteltu kuljetuskalusto",
   },
   {
-    value: "24 h",
-    label: "ajojärjestely",
+    value: "24/7",
+    label: "ajonjärjestely",
   },
 ];
 
