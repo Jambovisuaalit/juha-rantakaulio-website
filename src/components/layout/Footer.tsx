@@ -1,15 +1,15 @@
-import Image from "next/image";
-
 export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-main">
         <div className="footer-brand">
-          <Image
+          <img
             src="/brand/rantakaulio-logo.webp"
             alt="Juha Rantakaulio Oy"
-            width={220}
-            height={49}
+            width="700"
+            height="229"
+            loading="lazy"
+            decoding="async"
           />
           <p>Lämpötilahallittua logistiikkaa Kouvolasta koko Suomeen.</p>
         </div>
