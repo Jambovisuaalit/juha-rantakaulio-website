@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --navy-950: #102a43;
-  --navy-900: #163a5f;
-  --red-600: #d62b2f;
-  --red-700: #b91f24;
+  --navy-950: #0F2C59;
+  --navy-900: #183B6A;
+  --red-600: #D94125;
+  --red-700: #B8321D;
   --ice-50: #f7f9fa;
   --white: #ffffff;
   --steel-100: #e9eef1;
@@ -2440,5 +2440,357 @@ main {
 
   .service-card h3 {
     font-size: 22px;
+  }
+}
+
+
+/* ===== Brand direction v2 — 2026-08-30 ===== */
+.line-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.line-icon svg,
+.service-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.header-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-width: 0;
+}
+
+.header-phone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(15,44,89,.16);
+  color: var(--navy-950);
+  white-space: nowrap;
+}
+
+.header-phone > span:last-child {
+  display: grid;
+  gap: 1px;
+}
+
+.header-phone small,
+.hero-call-card small {
+  color: #66788d;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.header-phone strong {
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.mobile-call {
+  display: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--navy-950);
+  border: 1px solid rgba(15,44,89,.14);
+  border-radius: 50%;
+}
+
+.mobile-menu-phone {
+  display: grid !important;
+  gap: 2px;
+  padding: 16px 18px;
+  background: #f4f7fa;
+  border-bottom: 1px solid #e3e8eb;
+}
+.mobile-menu-phone span {
+  color: #6c7d90;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.mobile-menu-phone strong {
+  color: var(--navy-950);
+  font-size: 18px;
+}
+
+.hero-cover {
+  position: relative;
+  min-height: min(790px, calc(100svh - var(--header-height)));
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: #0F2C59;
+}
+
+.hero-cover-media,
+.hero-cover-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-cover-media img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center 48%;
+  filter: saturate(.92) contrast(1.03);
+}
+
+.hero-cover-shade {
+  background:
+    linear-gradient(90deg, rgba(15,44,89,.96) 0%, rgba(15,44,89,.90) 34%, rgba(15,44,89,.48) 63%, rgba(15,44,89,.16) 100%),
+    linear-gradient(0deg, rgba(8,26,52,.58) 0%, transparent 45%);
+}
+
+.hero-cover-content {
+  position: relative;
+  z-index: 2;
+  min-height: min(790px, calc(100svh - var(--header-height)));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(64px, 7vw, 100px);
+  padding-bottom: clamp(56px, 6vw, 84px);
+}
+
+.hero-cover-copy {
+  width: min(760px, 62vw);
+}
+
+.hero-cover .eyebrow {
+  color: #ffc2b6;
+}
+
+.hero-cover h1 {
+  max-width: 8.4ch;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display-stack);
+  font-size: clamp(72px, 7.2vw, 112px);
+  font-weight: 700;
+  line-height: .86;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+}
+
+.hero-cover .hero-lead {
+  max-width: 650px;
+  color: rgba(255,255,255,.88);
+  font-size: clamp(17px, 1.35vw, 21px);
+}
+
+.hero-call-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 11px 0;
+  color: #fff;
+}
+
+.hero-call-card > span:last-child {
+  display: grid;
+  gap: 1px;
+}
+
+.hero-call-card small {
+  color: rgba(255,255,255,.62);
+}
+
+.hero-call-card strong {
+  color: #fff;
+  font-family: var(--font-display-stack);
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.hero-location {
+  align-self: flex-end;
+  display: flex;
+  gap: 12px;
+  color: rgba(255,255,255,.9);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.hero-location span + span::before {
+  content: "/";
+  margin-right: 12px;
+  color: var(--red-600);
+}
+
+.service-card {
+  grid-template-columns: 34px 44px 1fr 28px;
+  align-items: start;
+}
+
+.service-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--navy-950);
+}
+
+.service-content {
+  min-width: 0;
+}
+
+@media (max-width: 1180px) {
+  .header-phone {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .mobile-call {
+    display: grid;
+  }
+
+  .header-inner {
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+  }
+
+  .hero-cover,
+  .hero-cover-content {
+    min-height: 720px;
+  }
+
+  .hero-cover-copy {
+    width: min(680px, 78vw);
+  }
+
+  .hero-cover-shade {
+    background:
+      linear-gradient(90deg, rgba(15,44,89,.94) 0%, rgba(15,44,89,.82) 48%, rgba(15,44,89,.34) 100%),
+      linear-gradient(0deg, rgba(8,26,52,.6) 0%, transparent 45%);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-cover {
+    min-height: 690px;
+  }
+
+  .hero-cover-content {
+    min-height: 690px;
+    align-items: flex-end;
+    padding-top: 86px;
+    padding-bottom: 34px;
+  }
+
+  .hero-cover-copy {
+    width: 100%;
+  }
+
+  .hero-cover-media img {
+    object-position: 57% 47%;
+  }
+
+  .hero-cover-shade {
+    background:
+      linear-gradient(0deg, rgba(15,44,89,.98) 0%, rgba(15,44,89,.92) 42%, rgba(15,44,89,.52) 72%, rgba(15,44,89,.20) 100%);
+  }
+
+  .hero-cover h1 {
+    max-width: 8.1ch;
+    font-size: clamp(52px, 14.5vw, 68px);
+    line-height: .88;
+  }
+
+  .hero-cover .hero-lead {
+    max-width: 34ch;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .hero-cover .hero-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .hero-call-card {
+    min-height: 50px;
+    padding: 4px 2px;
+  }
+
+  .hero-call-card strong {
+    font-size: 24px;
+  }
+
+  .hero-cover .hero-note {
+    margin-top: 18px;
+  }
+
+  .hero-location {
+    display: none;
+  }
+
+  .service-card {
+    display: grid;
+    grid-template-columns: 28px 36px minmax(0,1fr) 18px;
+    gap: 10px;
+    padding: 22px 16px;
+  }
+
+  .service-number {
+    margin: 0;
+    padding-top: 4px;
+  }
+
+  .service-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .service-arrow {
+    position: static;
+    justify-self: end;
+    padding-top: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    width: 136px;
+  }
+
+  .hero-cover,
+  .hero-cover-content {
+    min-height: 650px;
+  }
+
+  .hero-cover-content {
+    padding-top: 76px;
+    padding-bottom: 28px;
+  }
+
+  .hero-cover h1 {
+    font-size: clamp(48px, 14vw, 58px);
+  }
+
+  .service-card {
+    grid-template-columns: 26px 32px minmax(0,1fr) 16px;
+    padding: 20px 14px;
+  }
+
+  .service-card h3 {
+    font-size: clamp(22px, 6.2vw, 25px);
   }
 }
