@@ -19,15 +19,15 @@ const services = [
   {
     number: "04",
     title: "Kokonaislogistiikka",
-    text: "Tarvittaessa hoidamme myös asiakkaan sisäistä logistiikkaa, varastonhallintaa ja toimitusketjun välivaiheita.",
+    text: "Tarvittaessa hoidamme myös sisäistä logistiikkaa, varastonhallintaa ja toimitusketjun välivaiheita.",
   },
 ];
 
 const coldChain = [
-  ["LIVE", "Reaaliaikainen lämpötilaseuranta", "Kuljetuslämpötiloja seurataan matkan aikana jatkuvasti."],
+  ["LIVE", "Reaaliaikainen seuranta", "Kuljetuslämpötiloja seurataan matkan aikana jatkuvasti."],
   ["ATP", "Luokiteltu kalusto", "Kalusto täyttää lämpötilahallittujen kuljetusten vaatimukset."],
   ["DATA", "Fleetlogis", "Kuljetuksesta jää seurattava tieto laadunvarmistusta varten."],
-  ["CLIENT", "Asiakasnäkyvyys", "Ajankohtaista lämpötilatietoa voidaan tuoda myös asiakkaan käyttöön."],
+  ["CLIENT", "Asiakasnäkyvyys", "Ajankohtaista lämpötilatietoa voidaan tuoda asiakkaan käyttöön."],
 ];
 
 const contacts = [
@@ -39,25 +39,27 @@ const contacts = [
 export function HomeSections() {
   return (
     <>
-      <section className="section-block services-section" id="palvelut" aria-labelledby="services-title">
+      <section className="section services-section" id="palvelut" aria-labelledby="services-title">
         <div className="container">
-          <div className="section-head split-head">
+          <div className="section-head">
             <div>
               <p className="section-kicker">01 / Palvelut</p>
               <h2 id="services-title">Koko ketju hallinnassa.</h2>
             </div>
             <p className="section-intro">
-              Kuljetuksesta terminaaliin ja varastointiin. Rantakaulio rakentaa
-              tarvittavan kokonaisuuden yhden vastuullisen kumppanin kautta.
+              Kuljetuksesta terminaaliin ja varastointiin. Tarvittava kokonaisuus
+              yhden vastuullisen kumppanin kautta.
             </p>
           </div>
 
-          <div className="service-list">
+          <div className="services-grid">
             {services.map((service) => (
-              <article className="service-row" key={service.number}>
+              <article className="service-card" key={service.number}>
                 <span className="service-number">{service.number}</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.text}</p>
+                </div>
                 <span className="service-arrow" aria-hidden="true">↗</span>
               </article>
             ))}
@@ -66,23 +68,33 @@ export function HomeSections() {
       </section>
 
       <section className="cold-chain" id="kylmaketju" aria-labelledby="cold-title">
-        <div className="container cold-layout">
+        <div className="container cold-shell">
           <div className="cold-copy">
             <p className="section-kicker section-kicker-light">02 / Kylmäketju</p>
             <h2 id="cold-title">Tiedämme, mitä kuormassa tapahtuu.</h2>
-            <p>
-              Lämpötila ei ole sivuseikka. Se on mitattava osa toimitusvarmuutta.
-              Rantakaulion järjestelmä yhdistää oikean kaluston, seurannan ja
-              dokumentoitavan tiedon.
+            <p className="cold-lead">
+              Lämpötila on mitattava osa toimitusvarmuutta. Rantakaulion
+              järjestelmä yhdistää oikean kaluston, seurannan ja dokumentoitavan tiedon.
             </p>
-            <a className="button button-primary button-large" href="mailto:henri@rantakaulio.fi?subject=Kuljetustarjous">
+            <a className="button button-primary button-large" href="#yhteystiedot">
               Kysy lämpötilakuljetuksesta <span aria-hidden="true">→</span>
             </a>
           </div>
 
-          <div className="cold-grid">
+          <figure className="cold-visual">
+            <div className="cold-halo" aria-hidden="true" />
+            <Image
+              src="/images/truck-cutout.webp"
+              alt="Rantakaulion lämpötilahallittu Mercedes-Benz Actros -yhdistelmä"
+              fill
+              sizes="(max-width: 980px) 100vw, 52vw"
+            />
+            <figcaption>ATP · LÄMPÖTILAHALLITTU KULJETUSKALUSTO</figcaption>
+          </figure>
+
+          <div className="cold-facts">
             {coldChain.map(([tag, title, text]) => (
-              <article className="cold-card" key={tag}>
+              <article key={tag}>
                 <span>{tag}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -92,23 +104,14 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="section-block terminal-section" id="terminaali" aria-labelledby="terminal-title">
+      <section className="section terminal-section" id="terminaali" aria-labelledby="terminal-title">
         <div className="container terminal-layout">
-          <div className="terminal-visual" aria-hidden="true">
-            <div className="terminal-gridlines" />
-            <span className="terminal-code">KVL / 45200</span>
-            <div className="terminal-door terminal-door-1"><b>01</b><i /></div>
-            <div className="terminal-door terminal-door-2"><b>02</b><i /></div>
-            <div className="terminal-door terminal-door-3"><b>03</b><i /></div>
-            <p>VIIDETTY TERMINAALI · TIILITIE 6</p>
-          </div>
-
           <div className="terminal-copy">
             <p className="section-kicker">03 / Terminaali</p>
             <h2 id="terminal-title">Enemmän kuin kuljetus.</h2>
             <p className="section-intro">
-              Tavara voidaan vastaanottaa, käsitellä, välivarastoida ja
-              toimittaa eteenpäin osana samaa ketjua.
+              Tavara voidaan vastaanottaa, käsitellä, välivarastoida ja toimittaa
+              eteenpäin osana samaa ketjua.
             </p>
 
             <div className="terminal-services">
@@ -116,11 +119,17 @@ export function HomeSections() {
               <div><span>02</span><strong>Lajittelu & keräily</strong></div>
               <div><span>03</span><strong>Jatkokuljetus</strong></div>
             </div>
+          </div>
 
-            <div className="address-note">
-              <span>Viileäterminaali</span>
-              <strong>Tiilitie 6, 45200 Kouvola</strong>
+          <div className="terminal-panel" aria-label="Viileäterminaalin tiedot">
+            <div className="terminal-gridlines" aria-hidden="true" />
+            <span className="terminal-code">KVL / 45200</span>
+            <strong>VIILEÄTERMINAALI</strong>
+            <p>Tiilitie 6, 45200 Kouvola</p>
+            <div className="dock-row" aria-hidden="true">
+              <i>01</i><i>02</i><i>03</i>
             </div>
+            <small>LAJITTELU · KERÄILY · VARASTOINTI</small>
           </div>
         </div>
       </section>
@@ -130,64 +139,47 @@ export function HomeSections() {
           <div>
             <p className="section-kicker section-kicker-light">04 / Toiminta-alue</p>
             <h2 id="area-title">Kouvolasta koko Suomeen.</h2>
+            <p>
+              Pääpaino Itä-, Etelä- ja Keski-Suomessa. Verkosto mahdollistaa
+              toimitusketjun koko Suomeen sekä tarvittaessa Pohjoismaihin ja Baltiaan.
+            </p>
           </div>
 
-          <div className="area-routes" aria-label="Toiminta-alueet">
-            <div className="route-row route-primary">
-              <span>01</span>
-              <strong>Itä-Suomi</strong>
-              <i />
-            </div>
-            <div className="route-row route-primary">
-              <span>02</span>
-              <strong>Etelä-Suomi</strong>
-              <i />
-            </div>
-            <div className="route-row route-primary">
-              <span>03</span>
-              <strong>Keski-Suomi</strong>
-              <i />
-            </div>
-            <div className="route-row">
-              <span>04</span>
-              <strong>Koko Suomi verkoston kautta</strong>
-              <i />
-            </div>
-            <div className="route-row">
-              <span>05</span>
-              <strong>Pohjoismaat & Baltia tarvittaessa</strong>
-              <i />
-            </div>
+          <div className="area-routes">
+            <div className="route-main"><span>01</span><strong>Itä-Suomi</strong></div>
+            <div className="route-main"><span>02</span><strong>Etelä-Suomi</strong></div>
+            <div className="route-main"><span>03</span><strong>Keski-Suomi</strong></div>
+            <div><span>04</span><strong>Koko Suomi verkoston kautta</strong></div>
+            <div><span>05</span><strong>Pohjoismaat & Baltia tarvittaessa</strong></div>
           </div>
         </div>
       </section>
 
-      <section className="section-block fleet-section" id="kalusto" aria-labelledby="fleet-title">
-        <div className="container fleet-layout">
-          <div className="fleet-copy">
-            <p className="section-kicker">05 / Kalusto</p>
+      <section className="fleet-section" id="kalusto" aria-labelledby="fleet-title">
+        <div className="fleet-media">
+          <Image
+            src="/images/fleet-lineup.webp"
+            alt="Juha Rantakaulio Oy:n lämpötilahallittua kuljetuskalustoa Kouvolassa"
+            fill
+            sizes="100vw"
+          />
+          <div className="fleet-overlay" />
+          <div className="container fleet-caption">
+            <p className="section-kicker section-kicker-light">05 / Kalusto</p>
             <h2 id="fleet-title">Kalusto, jolla työ tehdään.</h2>
-            <p className="section-intro">
+            <p>
               Nykyaikainen kalusto, ATP-luokitus ja lämpötilaseuranta tekevät
               kylmäketjusta hallittavan myös käytännössä.
             </p>
-
-            <div className="fleet-facts">
-              <div><span>ATP</span><p>Lämpötilahallittu kuljetuskalusto</p></div>
-              <div><span>LIVE</span><p>Seuranta matkan aikana</p></div>
-              <div><span>24H</span><p>Ajojärjestely</p></div>
-            </div>
           </div>
+        </div>
 
-          <figure className="fleet-media">
-            <Image
-              src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/images/rantakaulio-fleet.webp"
-              alt="Juha Rantakaulio Oy:n kuljetuskalustoa ylhäältä kuvattuna"
-              fill
-              sizes="(max-width: 900px) 100vw, 54vw"
-            />
-            <figcaption>KOUVOLA · KULJETUSKALUSTO</figcaption>
-          </figure>
+        <div className="fleet-facts-wrap">
+          <div className="container fleet-facts">
+            <div><span>ATP</span><p>Lämpötilahallittu kuljetuskalusto</p></div>
+            <div><span>LIVE</span><p>Seuranta matkan aikana</p></div>
+            <div><span>24 H</span><p>Ajojärjestely</p></div>
+          </div>
         </div>
       </section>
 
@@ -195,8 +187,8 @@ export function HomeSections() {
         <div className="container people-layout">
           <figure className="people-media">
             <Image
-              src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/images/rantakaulio-portrait.webp"
-              alt="Juha Rantakaulio Oy:n kuljetusammattilainen työvaatetuksessa"
+              src="/images/rantakaulio-portrait.webp"
+              alt="Rantakaulion kuljetusammattilainen työvaatetuksessa"
               fill
               sizes="(max-width: 760px) 100vw, 38vw"
             />
@@ -205,10 +197,9 @@ export function HomeSections() {
           <div className="people-copy">
             <p className="section-kicker section-kicker-light">06 / Yritys</p>
             <h2 id="people-title">Logistiikan takana ovat ihmiset.</h2>
-            <p>
+            <p className="people-lead">
               Rantakaulio on Kouvolasta kasvanut perheyritys. Pitkä kokemus,
-              käytännön työn tuntemus ja suora yhteys vastuuhenkilöihin ovat
-              osa palvelua — eivät erillinen lisä.
+              käytännön työn tuntemus ja suora yhteys vastuuhenkilöihin ovat osa palvelua.
             </p>
 
             <div className="contact-list">
@@ -229,7 +220,7 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="section-block history-section" aria-labelledby="history-title">
+      <section className="section history-section" aria-labelledby="history-title">
         <div className="container history-layout">
           <div>
             <p className="section-kicker">07 / Historia</p>
@@ -237,93 +228,74 @@ export function HomeSections() {
           </div>
 
           <div className="history-line">
-            <article>
-              <span>ALKU</span>
-              <h3>Kuljetusliike</h3>
-              <p>Toiminta kasvaa Kouvolan alueelta pitkäjänteisesti asiakkaiden tarpeiden mukana.</p>
-            </article>
-            <article>
-              <span>→</span>
-              <h3>Elintarvikelogistiikka</h3>
-              <p>Lämpötilahallituista kuljetuksista muodostuu keskeinen osa osaamista.</p>
-            </article>
-            <article>
-              <span>→</span>
-              <h3>Terminaali</h3>
-              <p>Kuljetuksen rinnalle rakentuvat käsittely-, varastointi- ja terminaalipalvelut.</p>
-            </article>
-            <article>
-              <span>NYT</span>
-              <h3>Seuraava sukupolvi</h3>
-              <p>Yrityksen jatkuvuus yhdistää kokemuksen, uuden kaluston ja modernin seurannan.</p>
-            </article>
+            <article><span>ALKU</span><h3>Kuljetusliike</h3><p>Toiminta kasvaa asiakkaiden tarpeiden mukana.</p></article>
+            <article><span>→</span><h3>Elintarvikelogistiikka</h3><p>Lämpötilahallitusta logistiikasta muodostuu ydinosaamista.</p></article>
+            <article><span>→</span><h3>Terminaali</h3><p>Kuljetuksen rinnalle rakentuvat käsittely- ja varastointipalvelut.</p></article>
+            <article><span>NYT</span><h3>Seuraava sukupolvi</h3><p>Kokemus yhdistyy uuteen kalustoon ja moderniin seurantaan.</p></article>
           </div>
         </div>
       </section>
 
-      <section className="faq-section" aria-labelledby="faq-title">
-        <div className="container faq-layout">
-          <div>
+      <section className="conversion-section" id="yhteystiedot">
+        <div className="container conversion-grid">
+          <div className="faq-block" aria-labelledby="faq-title">
             <p className="section-kicker section-kicker-light">08 / Usein kysyttyä</p>
             <h2 id="faq-title">Ennen kuin kuorma lähtee.</h2>
+            <div className="faq-list">
+              <details>
+                <summary>Mitä Rantakaulio kuljettaa?<span>+</span></summary>
+                <p>Erityisosaamista ovat lämpötilahallitut kuljetukset ja elintarvikelogistiikka. Sopivuus varmistetaan kuljetuskohtaisesti.</p>
+              </details>
+              <details>
+                <summary>Missä terminaali sijaitsee?<span>+</span></summary>
+                <p>Viileäterminaali sijaitsee osoitteessa Tiilitie 6, 45200 Kouvola.</p>
+              </details>
+              <details>
+                <summary>Miten lämpötilaa seurataan?<span>+</span></summary>
+                <p>Fleetlogis mahdollistaa kuljetuslämpötilojen reaaliaikaisen seurannan ja ajankohtaisen tiedon asiakkaalle.</p>
+              </details>
+              <details>
+                <summary>Mille alueille kuljetuksia järjestetään?<span>+</span></summary>
+                <p>Pääpaino on Itä-, Etelä- ja Keski-Suomessa. Verkosto ulottuu koko Suomeen sekä tarvittaessa Pohjoismaihin ja Baltiaan.</p>
+              </details>
+            </div>
           </div>
 
-          <div className="faq-list">
-            <details>
-              <summary>Mitä Rantakaulio kuljettaa?<span>+</span></summary>
-              <p>Erityisosaamista ovat lämpötilahallitut kuljetukset ja elintarvikelogistiikka. Sopivuus varmistetaan aina kuljetuskohtaisesti.</p>
-            </details>
-            <details>
-              <summary>Missä terminaali sijaitsee?<span>+</span></summary>
-              <p>Viileäterminaali sijaitsee osoitteessa Tiilitie 6, 45200 Kouvola.</p>
-            </details>
-            <details>
-              <summary>Miten lämpötilaa seurataan?<span>+</span></summary>
-              <p>Fleetlogis-järjestelmä mahdollistaa kuljetuslämpötilojen reaaliaikaisen seurannan ja ajankohtaisen tiedon välittämisen asiakkaalle.</p>
-            </details>
-            <details>
-              <summary>Mille alueille kuljetuksia järjestetään?<span>+</span></summary>
-              <p>Pääpaino on Itä-, Etelä- ja Keski-Suomessa. Verkoston kautta toimituksia voidaan järjestää koko Suomeen sekä tarvittaessa Pohjoismaihin ja Baltiaan.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section className="quote-section" id="yhteystiedot" aria-labelledby="quote-title">
-        <div className="container quote-layout">
-          <div className="quote-copy">
+          <div className="quote-block" aria-labelledby="quote-title">
             <p className="section-kicker">09 / Tarjouspyyntö</p>
             <h2 id="quote-title">Onko kuorma lähdössä?</h2>
-            <p>Kerro mistä, minne ja mitä kuljetetaan. Otamme yhteyttä ja varmistamme sopivan ratkaisun.</p>
+            <p className="quote-lead">
+              Kerro mistä, minne ja mitä kuljetetaan. Otamme yhteyttä ja
+              varmistamme sopivan ratkaisun.
+            </p>
 
             <a className="dispatch-link" href="tel:+358503662215">
-              <span>Ajojärjestely 24 h</span>
-              <strong>050 366 2215</strong>
+              <span>Ajojärjestely 24 h</span><strong>050 366 2215</strong>
             </a>
-          </div>
 
-          <form className="quote-form" action="mailto:henri@rantakaulio.fi" method="post" encType="text/plain">
-            <div className="field-row">
-              <label>Yritys *<input name="Yritys" required autoComplete="organization" /></label>
-              <label>Nimi *<input name="Nimi" required autoComplete="name" /></label>
-            </div>
-            <div className="field-row">
-              <label>Sähköposti *<input type="email" name="Sähköposti" required autoComplete="email" /></label>
-              <label>Puhelin<input type="tel" name="Puhelin" autoComplete="tel" /></label>
-            </div>
-            <div className="field-row">
-              <label>Lähtöpaikka<input name="Lähtöpaikka" /></label>
-              <label>Määränpää<input name="Määränpää" /></label>
-            </div>
-            <div className="field-row">
-              <label>Kuljetettava tuote<input name="Tuote" /></label>
-              <label>Lämpötilavaatimus<input name="Lämpötila" placeholder="esim. +2…+6 °C" /></label>
-            </div>
-            <label>Lisätiedot<textarea name="Lisätiedot" rows={4} /></label>
-            <button className="button button-primary button-large" type="submit">
-              Lähetä tarjouspyyntö <span aria-hidden="true">→</span>
-            </button>
-          </form>
+            <form className="quote-form" action="mailto:henri@rantakaulio.fi" method="post" encType="text/plain">
+              <div className="field-row">
+                <label>Yritys *<input name="Yritys" required autoComplete="organization" /></label>
+                <label>Nimi *<input name="Nimi" required autoComplete="name" /></label>
+              </div>
+              <div className="field-row">
+                <label>Sähköposti *<input type="email" name="Sähköposti" required autoComplete="email" /></label>
+                <label>Puhelin<input type="tel" name="Puhelin" autoComplete="tel" /></label>
+              </div>
+              <div className="field-row">
+                <label>Lähtöpaikka<input name="Lähtöpaikka" /></label>
+                <label>Määränpää<input name="Määränpää" /></label>
+              </div>
+              <div className="field-row">
+                <label>Kuljetettava tuote<input name="Tuote" /></label>
+                <label>Lämpötilavaatimus<input name="Lämpötila" placeholder="esim. +2…+6 °C" /></label>
+              </div>
+              <label>Lisätiedot<textarea name="Lisätiedot" rows={4} /></label>
+              <button className="button button-primary button-large" type="submit">
+                Lähetä tarjouspyyntö <span aria-hidden="true">→</span>
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </>
