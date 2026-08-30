@@ -2794,3 +2794,84 @@ main {
     font-size: clamp(22px, 6.2vw, 25px);
   }
 }
+
+
+/* ===== Typography + icon system v3 ===== */
+:root {
+  --font-display-stack: var(--font-display), "Montserrat", Arial, sans-serif;
+}
+
+.hero-cover h1,
+.section h2,
+.cold-chain h2,
+.area-section h2,
+.fleet-section h2,
+.people-section h2,
+.history-section h2,
+.conversion-section h2,
+.service-card h3,
+.cold-facts h3,
+.contact-list h3,
+.history-line h3,
+.proof-item strong {
+  font-family: var(--font-display-stack);
+}
+
+.hero-cover h1 {
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+.line-icon svg,
+.service-icon svg,
+.cold-icon svg {
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.service-icon,
+.cold-icon {
+  color: var(--navy-950);
+}
+
+.cold-fact-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cold-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  color: #b8c9dc;
+}
+
+.cold-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cold-tag {
+  color: #ffc0b2 !important;
+  font-size: 9px !important;
+  font-weight: 900;
+  letter-spacing: .15em;
+}
+
+.cold-facts h3 {
+  margin-top: 24px;
+}
+
+@media (max-width: 760px) {
+  .cold-fact-top {
+    align-items: flex-start;
+  }
+
+  .cold-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
