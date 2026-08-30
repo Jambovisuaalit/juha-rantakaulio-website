@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const navigation = [
   { href: "#palvelut", label: "Palvelut" },
   { href: "#kylmaketju", label: "Kylmäketju" },
@@ -13,12 +11,12 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <a className="brand" href="/" aria-label="Juha Rantakaulio Oy, etusivu">
-          <Image
+          <img
             src="/brand/rantakaulio-logo.webp"
             alt="Juha Rantakaulio Oy"
-            width={220}
-            height={49}
-            priority
+            width="700"
+            height="229"
+            decoding="async"
           />
         </a>
 
