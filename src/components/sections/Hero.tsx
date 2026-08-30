@@ -22,16 +22,13 @@ export function Hero() {
             </p>
 
             <div className="hero-actions">
-              <a
-                className="button button-primary button-large"
-                href="mailto:henri@rantakaulio.fi?subject=Kuljetustarjous"
-              >
+              <a className="button button-primary button-large" href="#yhteystiedot">
                 Pyydä kuljetustarjous <span aria-hidden="true">→</span>
               </a>
 
               <a className="text-link" href="tel:+358503662215">
-                Ajojärjestely 24 h
-                <span>050 366 2215</span>
+                <span className="text-link-label">Ajojärjestely 24 h</span>
+                <strong>050 366 2215</strong>
               </a>
             </div>
 
@@ -43,15 +40,14 @@ export function Hero() {
 
         <div className="hero-media">
           <Image
-            src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/images/rantakaulio-hero.webp"
-            alt="Juha Rantakaulio Oy:n henkilöstöä lämpötilahallitun kuljetuskaluston edessä"
+            src="/images/rantakaulio-hero.webp"
+            alt="Rantakaulion henkilöstöä lämpötilahallitun kuljetuskaluston edessä"
             fill
             priority
-            sizes="(max-width: 767px) 100vw, 58vw"
+            sizes="(max-width: 980px) 100vw, 58vw"
           />
           <div className="hero-media-label" aria-hidden="true">
-            <span>Kouvola</span>
-            <span>Finland</span>
+            <span>Kouvola</span><span>Finland</span>
           </div>
         </div>
       </div>
