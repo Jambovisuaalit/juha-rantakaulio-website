@@ -181,7 +181,7 @@ export function HomeSections() {
 
           <figure className="fleet-media">
             <Image
-              src="/images/rantakaulio-fleet.webp"
+              src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/images/rantakaulio-fleet.webp"
               alt="Juha Rantakaulio Oy:n kuljetuskalustoa ylhäältä kuvattuna"
               fill
               sizes="(max-width: 900px) 100vw, 54vw"
@@ -195,7 +195,7 @@ export function HomeSections() {
         <div className="container people-layout">
           <figure className="people-media">
             <Image
-              src="/images/rantakaulio-portrait.webp"
+              src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/images/rantakaulio-portrait.webp"
               alt="Juha Rantakaulio Oy:n kuljetusammattilainen työvaatetuksessa"
               fill
               sizes="(max-width: 760px) 100vw, 38vw"
