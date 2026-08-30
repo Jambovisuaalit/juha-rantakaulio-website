@@ -43,7 +43,7 @@ export function Hero() {
 
         <div className="hero-media">
           <Image
-            src="/images/rantakaulio-hero.webp"
+            src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/images/rantakaulio-hero.webp"
             alt="Juha Rantakaulio Oy:n henkilöstöä lämpötilahallitun kuljetuskaluston edessä"
             fill
             priority
