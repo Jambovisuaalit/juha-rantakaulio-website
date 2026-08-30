@@ -2875,3 +2875,192 @@ main {
     height: 30px;
   }
 }
+
+
+/* ===== Flat design v4 — 2026-08-30 ===== */
+:root {
+  --font-display-stack: var(--font-display), "Montserrat", Arial, sans-serif;
+  --font-sans-stack: var(--font-sans), "Inter", Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans-stack);
+}
+
+/* Flat header: no glass, blur or depth effects */
+.site-header {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  border-bottom: 1px solid #dfe5ea;
+}
+
+.mobile-menu nav {
+  box-shadow: none;
+  border: 1px solid #dfe5ea;
+}
+
+/* Geometric typography */
+.hero-cover h1,
+.section h2,
+.cold-chain h2,
+.area-section h2,
+.fleet-section h2,
+.people-section h2,
+.history-section h2,
+.conversion-section h2,
+.service-card h3,
+.cold-facts h3,
+.contact-list h3,
+.history-line h3,
+.proof-item strong,
+.terminal-panel > strong {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.desktop-nav a,
+.button,
+.header-phone,
+.mobile-menu nav,
+.quote-form,
+.section-intro,
+.hero-lead,
+.people-lead,
+.cold-lead,
+.service-card p,
+.cold-facts p {
+  font-family: var(--font-sans-stack);
+}
+
+/* Flat buttons */
+.button {
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: none;
+}
+
+.button span,
+.button:hover span {
+  transform: none;
+}
+
+/* Flat cards and surfaces */
+.service-card,
+.cold-facts article,
+.terminal-panel,
+.quote-block,
+.faq-block,
+.dispatch-link,
+.mobile-menu-phone {
+  box-shadow: none;
+}
+
+.service-card {
+  background: #ffffff;
+  transition: background-color 140ms ease;
+}
+
+.service-card:hover {
+  background: #f7f9fa;
+  transform: none;
+}
+
+.quote-block {
+  border: 1px solid #dfe5ea;
+}
+
+.terminal-panel {
+  border: 1px solid #cbd5df;
+}
+
+/* Remove 3D/photo-object shadows */
+.cold-visual img {
+  filter: none;
+}
+
+.hero-cover-media img,
+.fleet-media img,
+.people-media img {
+  filter: none;
+}
+
+/* Keep image overlays functional but visually flat */
+.hero-cover-shade {
+  background:
+    linear-gradient(90deg, rgba(15,44,89,.92) 0%, rgba(15,44,89,.78) 42%, rgba(15,44,89,.30) 72%, rgba(15,44,89,.10) 100%);
+}
+
+.fleet-overlay {
+  background:
+    linear-gradient(0deg, rgba(15,44,89,.82) 0%, rgba(15,44,89,.48) 42%, rgba(15,44,89,.06) 78%);
+}
+
+/* Thin line system only */
+.services-grid,
+.cold-facts,
+.proof-grid,
+.contact-list,
+.faq-list,
+.history-line,
+.area-routes,
+.terminal-services {
+  border-width: 1px;
+}
+
+.dock-row i {
+  border-width: 1px;
+}
+
+.history-line article::before {
+  border-width: 1px;
+  box-shadow: none;
+}
+
+.mobile-call {
+  border-width: 1px;
+  box-shadow: none;
+}
+
+/* Minimal icon treatment */
+.line-icon,
+.service-icon,
+.cold-icon {
+  box-shadow: none;
+  background: transparent;
+}
+
+.line-icon svg,
+.service-icon svg,
+.cold-icon svg {
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Remove decorative depth and glow */
+* {
+  text-shadow: none !important;
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    box-shadow: none;
+  }
+
+  .service-card {
+    border-left: 1px solid #dfe5ea;
+  }
+
+  .hero-cover-shade {
+    background:
+      linear-gradient(0deg, rgba(15,44,89,.96) 0%, rgba(15,44,89,.88) 44%, rgba(15,44,89,.42) 76%, rgba(15,44,89,.12) 100%);
+  }
+}
