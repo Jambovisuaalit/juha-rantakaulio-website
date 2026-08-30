@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const services = [
   {
     number: "01",
@@ -83,11 +81,13 @@ export function HomeSections() {
 
           <figure className="cold-visual">
             <div className="cold-halo" aria-hidden="true" />
-            <Image
+            <img
               src="/images/truck-cutout.webp"
               alt="Rantakaulion lämpötilahallittu Mercedes-Benz Actros -yhdistelmä"
-              fill
-              sizes="(max-width: 980px) 100vw, 52vw"
+              width="500"
+              height="368"
+              loading="lazy"
+              decoding="async"
             />
             <figcaption>ATP · LÄMPÖTILAHALLITTU KULJETUSKALUSTO</figcaption>
           </figure>
@@ -157,11 +157,13 @@ export function HomeSections() {
 
       <section className="fleet-section" id="kalusto" aria-labelledby="fleet-title">
         <div className="fleet-media">
-          <Image
+          <img
             src="/images/fleet-lineup.webp"
             alt="Juha Rantakaulio Oy:n lämpötilahallittua kuljetuskalustoa Kouvolassa"
-            fill
-            sizes="100vw"
+            width="760"
+            height="428"
+            loading="lazy"
+            decoding="async"
           />
           <div className="fleet-overlay" />
           <div className="container fleet-caption">
@@ -186,11 +188,13 @@ export function HomeSections() {
       <section className="people-section" id="yritys" aria-labelledby="people-title">
         <div className="container people-layout">
           <figure className="people-media">
-            <Image
-              src="/images/rantakaulio-portrait.webp"
-              alt="Rantakaulion kuljetusammattilainen työvaatetuksessa"
-              fill
-              sizes="(max-width: 760px) 100vw, 38vw"
+            <img
+              src="/images/rantakaulio-hero.webp"
+              alt="Rantakaulion henkilöstöä kuljetuskaluston edessä"
+              width="760"
+              height="428"
+              loading="lazy"
+              decoding="async"
             />
           </figure>
 
