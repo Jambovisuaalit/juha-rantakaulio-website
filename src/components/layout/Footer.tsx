@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container footer-top">
         <Image
-          src="/brand/rantakaulio-logo.webp"
+          src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/bff2f0781863efdc9389faef87adc8cdb51e5594/public/brand/rantakaulio-logo.webp"
           alt="Juha Rantakaulio Oy"
           width={220}
           height={49}
