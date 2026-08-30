@@ -82,7 +82,7 @@ export function HomeSections() {
           <figure className="cold-visual">
             <div className="cold-halo" aria-hidden="true" />
             <img
-              src="/images/truck-cutout.webp"
+              src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/truck-cutout.webp"
               alt="Rantakaulion lämpötilahallittu Mercedes-Benz Actros -yhdistelmä"
               width="500"
               height="368"
@@ -158,7 +158,7 @@ export function HomeSections() {
       <section className="fleet-section" id="kalusto" aria-labelledby="fleet-title">
         <div className="fleet-media">
           <img
-            src="/images/fleet-lineup.webp"
+            src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/fleet-lineup.webp"
             alt="Juha Rantakaulio Oy:n lämpötilahallittua kuljetuskalustoa Kouvolassa"
             width="760"
             height="428"
@@ -189,7 +189,7 @@ export function HomeSections() {
         <div className="container people-layout">
           <figure className="people-media">
             <img
-              src="/images/rantakaulio-hero.webp"
+              src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/rantakaulio-hero.webp"
               alt="Rantakaulion henkilöstöä kuljetuskaluston edessä"
               width="760"
               height="428"
