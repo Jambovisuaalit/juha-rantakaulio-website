@@ -12,7 +12,7 @@ export function Header() {
       <div className="container header-inner">
         <a className="brand" href="/" aria-label="Juha Rantakaulio Oy, etusivu">
           <img
-            src="/brand/rantakaulio-logo.webp"
+            src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/brand/rantakaulio-logo.webp"
             alt="Juha Rantakaulio Oy"
             width="700"
             height="229"
