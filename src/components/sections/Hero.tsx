@@ -3,7 +3,7 @@ export function Hero() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-media" aria-hidden="true">
         <img
-          src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/rantakaulio-hero.webp"
+          src="/images/rantakaulio-hero.webp"
           alt=""
           width="1672"
           height="941"
@@ -16,7 +16,7 @@ export function Hero() {
       <div className="container hero-content">
         <div className="hero-copy">
           <p className="eyebrow">Juha Rantakaulio Oy · Lämpötilahallittu logistiikka</p>
-          <h1 id="hero-title">Kylmäketju ei saa katketa.</h1>
+          <h1 id="hero-title"><span>Kylmäketju</span><span>ei saa katketa.</span></h1>
           <p className="hero-lead">
             Lämpötilahallitut kuljetukset ja elintarvikelogistiikka lähes 40 vuoden
             kokemuksella. Nykyaikainen kalusto, reaaliaikainen lämpötilaseuranta ja
