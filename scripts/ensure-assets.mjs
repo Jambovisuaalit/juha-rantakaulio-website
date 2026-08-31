@@ -4,9 +4,9 @@ import sharp from "sharp";
 
 const assets = {
   "public/images/rantakaulio-hero.webp":
-    "https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/rantakaulio-hero.webp",
+    "https://juha-rantakaulio-website.vercel.app/images/rantakaulio-hero.webp",
   "public/images/fleet-lineup.webp":
-    "https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/fleet-lineup.webp",
+    "https://juha-rantakaulio-website.vercel.app/images/fleet-lineup.webp",
   "public/images/truck-cutout.webp":
     "https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/truck-cutout.webp",
   "public/images/rantakaulio-portrait.webp":
