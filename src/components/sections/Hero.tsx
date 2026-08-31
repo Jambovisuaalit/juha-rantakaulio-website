@@ -3,7 +3,7 @@ export function Hero() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-media" aria-hidden="true">
         <img
-          src="/images/rantakaulio-hero.webp"
+          src="https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/rantakaulio-hero.webp"
           alt=""
           width="1672"
           height="941"
