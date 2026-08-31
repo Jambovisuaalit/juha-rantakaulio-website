@@ -15,11 +15,12 @@ export function Hero() {
 
       <div className="container hero-content">
         <div className="hero-copy">
-          <p className="eyebrow">Juha Rantakaulio Oy · Kouvola</p>
+          <p className="eyebrow">Juha Rantakaulio Oy · Lämpötilahallittu logistiikka</p>
           <h1 id="hero-title">Kylmäketju ei saa katketa.</h1>
           <p className="hero-lead">
             Lämpötilahallitut kuljetukset ja elintarvikelogistiikka lähes 40 vuoden
-            kokemuksella – varmoilla toimituksilla koko Suomeen.
+            kokemuksella. Nykyaikainen kalusto, reaaliaikainen lämpötilaseuranta ja
+            varmat toimitukset koko Suomeen.
           </p>
 
           <div className="hero-actions">
@@ -37,8 +38,8 @@ export function Hero() {
 
           <div className="hero-tags" aria-label="Keskeiset palvelulupaukset">
             <span>ATP-kalusto</span>
-            <span>FleetLogis-seuranta</span>
-            <span>24/7 tavoitettavuus</span>
+            <span>Reaaliaikainen seuranta</span>
+            <span>24/7 ajonjärjestely</span>
           </div>
         </div>
       </div>
