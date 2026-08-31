@@ -13,11 +13,18 @@ const assets = {
     "https://raw.githubusercontent.com/Jambovisuaalit/juha-rantakaulio-website/main/public/images/rantakaulio-portrait.webp"
 };
 
+const refreshAssets = new Set([
+  "public/images/rantakaulio-hero.webp",
+  "public/images/fleet-lineup.webp",
+]);
+
 for (const [path, url] of Object.entries(assets)) {
-  try {
-    await access(path);
-    continue;
-  } catch {}
+  if (!refreshAssets.has(path)) {
+    try {
+      await access(path);
+      continue;
+    } catch {}
+  }
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -36,10 +43,6 @@ for (const name of avifSources) {
   const source = join(process.cwd(), "public/images", `${name}.webp`);
   const target = join(process.cwd(), "public/images", `${name}.avif`);
 
-  try {
-    await access(target);
-  } catch {
-    await sharp(source).avif({ quality: 55, effort: 4 }).toFile(target);
-    console.log(`Generated ${target}`);
-  }
+  await sharp(source).avif({ quality: 55, effort: 4 }).toFile(target);
+  console.log(`Generated ${target}`);
 }
