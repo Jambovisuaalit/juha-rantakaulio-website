@@ -37,7 +37,7 @@ for (const [path, url] of Object.entries(assets)) {
   console.log(`Fetched ${path}`);
 }
 
-const avifSources = ["rantakaulio-hero", "fleet-lineup"];
+const avifSources = ["rantakaulio-hero"];
 
 for (const name of avifSources) {
   const source = join(process.cwd(), "public/images", `${name}.webp`);
