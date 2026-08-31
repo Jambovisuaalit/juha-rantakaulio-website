@@ -2,14 +2,18 @@ export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-media" aria-hidden="true">
-        <img
+        <picture>
+          <source srcSet="/images/rantakaulio-hero.avif" type="image/avif" />
+          <source srcSet="/images/rantakaulio-hero.webp" type="image/webp" />
+          <img
           src="/images/rantakaulio-hero.webp"
           alt=""
           width="1672"
           height="941"
           fetchPriority="high"
           decoding="async"
-        />
+          />
+        </picture>
       </div>
       <div className="hero-overlay" aria-hidden="true" />
 
