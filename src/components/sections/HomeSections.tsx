@@ -1,17 +1,175 @@
 import { ColdChainFlow } from "@/components/sections/ColdChainFlow";
+
 const serviceData = [
-  { icon: "temp", title: "Lämpötilahallitut kuljetukset", text: "Pakaste-, tuore- ja lämpöherkkien tuotteiden kuljetukset tarkasti hallituissa lämpötiloissa koko Suomeen." },
-  { icon: "food", title: "Elintarvikelogistiikka", text: "Elintarvikkeiden turvallinen kuljetus ja käsittely tuoteturvallisuus aina etusijalla." },
-  { icon: "warehouse", title: "Terminaali & varastointi", text: "Lämpötilasäädetty varastointi, tehokas tavarankäsittely, lajittelu ja keräily eri tarpeisiin." },
-  { icon: "route", title: "Kokonaislogistiikka", text: "Räätälöidyt ratkaisut yrityksesi logistiikan ulkoistukseen ja toimitusketjun optimointiin." },
+  { icon: "temp", title: "Lämpötilahallitut kuljetukset", text: "Pakaste-, tuore- ja lämpöherkkien tuotteiden kuljetukset hallituissa lämpötiloissa koko Suomeen." },
+  { icon: "food", title: "Elintarvikelogistiikka", text: "Elintarvikkeiden kuljetus ja käsittely tuoteturvallisuus sekä toimitusvarmuus edellä." },
+  { icon: "warehouse", title: "Terminaali & varastointi", text: "Lämpötilasäädetty varastointi, tavarankäsittely, lajittelu ja keräily eri tarpeisiin." },
+  { icon: "route", title: "Kokonaislogistiikka", text: "Kuljetus- ja terminaaliratkaisut yrityksen toimitusketjun tarpeisiin." },
 ];
-function LineIcon({ type }: { type: string }) { const c={fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round" as const,strokeLinejoin:"round" as const}; if(type==="temp")return <svg viewBox="0 0 24 24"><path {...c} d="M9 14.8V5a3 3 0 1 1 6 0v9.8a5 5 0 1 1-6 0Z"/><path {...c} d="M12 8v8"/></svg>;if(type==="food")return <svg viewBox="0 0 24 24"><path {...c} d="M6 3v7M9 3v7M6 7h3M7.5 10v11"/><path {...c} d="M15 3v18M15 3c3 1.5 4 5 4 8h-4"/></svg>;if(type==="warehouse")return <svg viewBox="0 0 24 24"><path {...c} d="m3 10 9-6 9 6v10H3Z"/><path {...c} d="M8 20v-6h8v6M8 10h8"/></svg>;if(type==="route")return <svg viewBox="0 0 24 24"><path {...c} d="M4 18h4c3 0 3-6 6-6h6"/><path {...c} d="m17 9 3 3-3 3"/><circle {...c} cx="5" cy="6" r="2"/></svg>;if(type==="gps")return <svg viewBox="0 0 24 24"><circle {...c} cx="12" cy="10" r="3"/><path {...c} d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/></svg>;if(type==="report")return <svg viewBox="0 0 24 24"><path {...c} d="M5 3h14v18H5Z"/><path {...c} d="M8 8h8M8 12h8M8 16h5"/></svg>;if(type==="eye")return <svg viewBox="0 0 24 24"><path {...c} d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle {...c} cx="12" cy="12" r="2.5"/></svg>;return <svg viewBox="0 0 24 24"><path {...c} d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6Z"/><path {...c} d="m9 12 2 2 4-5"/></svg> }
-const qualityItems=[["gps","Reaaliaikainen seuranta","Kuljetuksen sijaintia ja lämpötilaa voidaan seurata koko matkan ajan."],["eye","Asiakasnäkyvyys","Kuljetusten tilanne ja laadunvalvonnan tieto pidetään läpinäkyvänä."],["report","Laadun dokumentointi","Kuljetukset dokumentoidaan ja raportoidaan asiakkaan tarpeiden mukaan."],["shield","Varma toimitusketju","Oikea lämpötila, oikeaan aikaan – toimitusvarmuus edellä."]];
-const fleetImage="/images/fleet-lineup.webp";
-const heroImage="/images/rantakaulio-hero.webp";
-export function HomeSections(){return <>
-<section className="section services-section" id="palvelut"><div className="container"><div className="section-heading"><p className="section-kicker">Palvelumme</p><h2>Koko ketju hallinnassa.</h2><p>Täsmälliset elintarvikekuljetukset ja koko logistiikkaketju tarpeidesi mukaan – luotettavasti, täsmällisesti ja lämpötilahallinta edellä.</p></div><div className="services-grid">{serviceData.map(s=><article className="service-card" key={s.title}><span className="service-icon"><LineIcon type={s.icon}/></span><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
-<ColdChainFlow />
-<section className="quality-section" id="laatu"><div className="container quality-grid"><div className="quality-copy"><p className="section-kicker section-kicker-light">Tekniikka & laatu</p><h2>Tekniikka, joka vartioi laatua</h2><p className="quality-lead">Kylmäkuljetus on enemmän kuin kyydin viemistä perille. Se on jatkuvaa valvontaa, tarkkaa dokumentointia ja toimintavarmaa kalustoa.</p><div className="quality-items">{qualityItems.map(([i,t,x])=><article key={t}><span className="quality-icon"><LineIcon type={i}/></span><div><h3>{t}</h3><p>{x}</p></div></article>)}</div></div><div className="quality-visual"><div className="quality-photo"><picture><source srcSet="/images/fleet-lineup.webp" type="image/webp"/><img src={fleetImage} alt="Juha Rantakaulio Oy:n kuljetuskalustoa" width="760" height="428" loading="lazy"/></picture></div><div className="quality-data"><div><small>Valvonta</small><strong>24/7</strong></div><div><small>Kalusto</small><strong>ATP</strong></div><div><small>Toimitukset</small><strong>SUOMI</strong></div></div></div></div></section>
-<section className="about-section" id="meista"><div className="container about-grid"><figure className="about-photo"><picture><source srcSet="/images/rantakaulio-hero.avif" type="image/avif"/><source srcSet="/images/rantakaulio-hero.webp" type="image/webp"/><img src={heroImage} alt="Juha Rantakaulio Oy:n kalustoa" width="760" height="428" loading="lazy"/></picture></figure><div className="about-copy"><p className="section-kicker">Perheyritys</p><h2>Perheyritys. Vastuuta ja välittämistä.</h2><p>Juha Rantakaulio Oy on kotimainen perheyritys, joka on palvellut asiakkaitaan jo lähes 40 vuotta. Nykyaikainen kalusto ja sitoutunut henkilöstö pitävät kylmäketjun hallinnassa alusta loppuun.</p><div className="about-values"><div><strong>Lähes 40 v</strong><span>Kokemusta</span></div><div><strong>Kouvola</strong><span>Kotipaikka</span></div><div><strong>Koko Suomi</strong><span>Toimitusalue</span></div></div></div></div></section>
-<section className="contact-section" id="yhteystiedot"><div className="container contact-grid"><div className="contact-copy"><p className="section-kicker section-kicker-light">Tarjouspyyntö</p><h2>Ota yhteyttä tai pyydä tarjous</h2><p>Kerro reitti, ajankohta ja lämpötilavaatimus. Varmistamme tarpeeseesi sopivan kuljetusratkaisun.</p><div className="direct-contacts"><a href="tel:+358503662215"><small>Ajonjärjestely 24/7</small><strong>050 366 2215</strong><span>ajo@rantakaulio.fi</span></a><a href="tel:+35853755200"><small>Myynti & tarjoukset</small><strong>05 375 5200</strong><span>myynti@rantakaulio.fi</span></a></div></div><form className="quote-form" action="mailto:myynti@rantakaulio.fi" method="post" encType="text/plain"><div className="field-row"><label>Nimi *<input name="Nimi" required autoComplete="name"/></label><label>Yritys *<input name="Yritys" required autoComplete="organization"/></label></div><div className="field-row"><label>Sähköposti *<input type="email" name="Sähköposti" required autoComplete="email"/></label><label>Puhelinnumero<input type="tel" name="Puhelin" autoComplete="tel"/></label></div><div className="field-row"><label>Reitti / reittitoive<input name="Reitti" placeholder="Esim. Kouvola → Helsinki"/></label><label>Nouto / toimitus<input name="Ajankohta" placeholder="Päivä ja kellonaika"/></label></div><label>Lämpötilavaatimus<select name="Lämpötilavaatimus" defaultValue=""><option value="" disabled>Valitse</option><option>Pakaste</option><option>Tuore</option><option>Kuivakuorma</option><option>Muu</option></select></label><label>Viesti / lisätiedot<textarea name="Viesti" rows={4}/></label><button className="button button-primary button-large" type="submit">Lähetä tarjouspyyntö <span>→</span></button></form></div></section></>}
+
+function LineIcon({ type }: { type: string }) {
+  const c = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  if (type === "temp") return <svg viewBox="0 0 24 24"><path {...c} d="M9 14.8V5a3 3 0 1 1 6 0v9.8a5 5 0 1 1-6 0Z"/><path {...c} d="M12 8v8"/></svg>;
+  if (type === "food") return <svg viewBox="0 0 24 24"><path {...c} d="M6 3v7M9 3v7M6 7h3M7.5 10v11"/><path {...c} d="M15 3v18M15 3c3 1.5 4 5 4 8h-4"/></svg>;
+  if (type === "warehouse") return <svg viewBox="0 0 24 24"><path {...c} d="m3 10 9-6 9 6v10H3Z"/><path {...c} d="M8 20v-6h8v6M8 10h8"/></svg>;
+  if (type === "route") return <svg viewBox="0 0 24 24"><path {...c} d="M4 18h4c3 0 3-6 6-6h6"/><path {...c} d="m17 9 3 3-3 3"/><circle {...c} cx="5" cy="6" r="2"/></svg>;
+  if (type === "gps") return <svg viewBox="0 0 24 24"><circle {...c} cx="12" cy="10" r="3"/><path {...c} d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/></svg>;
+  if (type === "report") return <svg viewBox="0 0 24 24"><path {...c} d="M5 3h14v18H5Z"/><path {...c} d="M8 8h8M8 12h8M8 16h5"/></svg>;
+  if (type === "eye") return <svg viewBox="0 0 24 24"><path {...c} d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle {...c} cx="12" cy="12" r="2.5"/></svg>;
+  return <svg viewBox="0 0 24 24"><path {...c} d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6Z"/><path {...c} d="m9 12 2 2 4-5"/></svg>;
+}
+
+const painPoints = [
+  ["Missä kuorma on?", "Kuljetuksen tilaa ei pitäisi joutua selvittämään puhelimella."],
+  ["Pysyikö lämpötila hallinnassa?", "Kylmäketjun onnistumisen pitää perustua mitattavaan tietoon."],
+  ["Mitä tapahtui?", "Kun jotain pitää selvittää, vastauksen pitää perustua faktoihin."],
+];
+
+const qualityItems = [
+  ["gps", "Reaaliaikainen seuranta", "Kuljetuksen sijaintia ja lämpötilaa voidaan seurata koko matkan ajan."],
+  ["eye", "Asiakasnäkyvyys", "Olennaiset kuljetus- ja laadunvalvontatiedot voidaan tuoda asiakkaan käyttöön tarpeen mukaan."],
+  ["report", "Dokumentointi", "Kuljetuksia dokumentoidaan ja raportoidaan asiakkaan tarpeiden mukaan."],
+  ["shield", "Toimitusvarmuus", "Oikea kalusto, hallittu lämpötila ja tavoitettava ajonjärjestely muodostavat toimintavarman ketjun."],
+];
+
+const fleetImage = "/images/fleet-lineup.webp";
+const heroImage = "/images/rantakaulio-hero.webp";
+
+export function HomeSections() {
+  return (
+    <>
+      <section className="section problem-section" aria-labelledby="problem-title">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-kicker">Kun kaikki menee hyvin, kuljetusta ei tarvitse miettiä.</p>
+            <h2 id="problem-title">Ongelma alkaa, kun joku kysyy mitä tapahtui.</h2>
+            <p>Viivästys, lämpötilapoikkeama, reklamaatio tai auditointi muuttaa lupauksen nopeasti kysymykseksi: mitä oikeasti tapahtui ja milloin?</p>
+          </div>
+          <div className="pain-grid">
+            {painPoints.map(([title, text], index) => (
+              <article className="pain-item" key={title}>
+                <span className="pain-index">0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ColdChainFlow />
+
+      <section className="section services-section" id="palvelut">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-kicker">Palvelut</p>
+            <h2>Lämpötilahallittu logistiikka ilman ylimääräistä kitkaa.</h2>
+            <p>Oikea kuljetusratkaisu, hallittu lämpötila ja selkeä vastuu koko ketjun ajan.</p>
+          </div>
+          <div className="services-grid">
+            {serviceData.map((service) => (
+              <article className="service-card" key={service.title}>
+                <span className="service-icon"><LineIcon type={service.icon}/></span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="quality-section" id="laatu">
+        <div className="container quality-grid">
+          <div className="quality-copy">
+            <p className="section-kicker section-kicker-light">Seuranta & laatu</p>
+            <h2>Oikea lämpötila ei riitä. Tarvitaan myös näyttö.</h2>
+            <p className="quality-lead">RANTAKAULION nykyinen seuranta yhdistää sijainti- ja lämpötilatiedon operatiiviseen kuljetusprosessiin. Kun jotain pitää selvittää, päätöksen ei tarvitse perustua arvaukseen.</p>
+            <div className="quality-items">
+              {qualityItems.map(([icon, title, text]) => (
+                <article key={title}>
+                  <span className="quality-icon"><LineIcon type={icon}/></span>
+                  <div><h3>{title}</h3><p>{text}</p></div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="quality-visual">
+            <div className="quality-photo">
+              <picture>
+                <source srcSet="/images/fleet-lineup.webp" type="image/webp"/>
+                <img src={fleetImage} alt="Juha Rantakaulio Oy:n kuljetuskalustoa" width="760" height="428" loading="lazy"/>
+              </picture>
+            </div>
+            <div className="quality-data">
+              <div><small>Seuranta</small><strong>FLEETLOGIS</strong></div>
+              <div><small>Kalusto</small><strong>ATP</strong></div>
+              <div><small>Ajojärjestely</small><strong>24/7</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-section" id="meista">
+        <div className="container about-grid">
+          <figure className="about-photo">
+            <picture>
+              <source srcSet="/images/rantakaulio-hero.avif" type="image/avif"/>
+              <source srcSet="/images/rantakaulio-hero.webp" type="image/webp"/>
+              <img src={heroImage} alt="Juha Rantakaulio Oy:n kalustoa" width="760" height="428" loading="lazy"/>
+            </picture>
+          </figure>
+          <div className="about-copy">
+            <p className="section-kicker">Kokemus</p>
+            <h2>Kokemus kuljettaa. Data todistaa.</h2>
+            <p>RANTAKAULION kuljetustoiminnan juuret ulottuvat vuoteen 1984. Kalusto, kapasiteetti ja järjestelmät ovat kehittyneet — vastuu sovitusta kuljetuksesta ei.</p>
+            <div className="about-values">
+              <div><strong>Lähes 40 v</strong><span>Kokemusta</span></div>
+              <div><strong>Kouvola</strong><span>Kotipaikka</span></div>
+              <div><strong>Koko Suomi</strong><span>Toimitusalue</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-section" id="yhteystiedot">
+        <div className="container contact-grid">
+          <div className="contact-copy">
+            <p className="section-kicker section-kicker-light">Kuljetustarjous</p>
+            <h2>Tarvitsetko kuljetuksen, jonka onnistumista ei tarvitse arvailla?</h2>
+            <p>Kerro lähtöpaikka, määränpää, ajankohta ja lämpötilavaatimus. Saat arvion tarpeeseesi sopivasta kuljetusratkaisusta.</p>
+            <div className="direct-contacts">
+              <a href="tel:+358503662215"><small>Ajonjärjestely 24/7</small><strong>050 366 2215</strong><span>ajo@rantakaulio.fi</span></a>
+              <a href="tel:+35853755200"><small>Myynti & tarjoukset</small><strong>05 375 5200</strong><span>myynti@rantakaulio.fi</span></a>
+            </div>
+          </div>
+
+          <form className="quote-form" action="mailto:myynti@rantakaulio.fi" method="post" encType="text/plain">
+            <div className="field-row">
+              <label>Nimi *<input name="Nimi" required autoComplete="name"/></label>
+              <label>Yritys *<input name="Yritys" required autoComplete="organization"/></label>
+            </div>
+            <div className="field-row">
+              <label>Sähköposti *<input type="email" name="Sähköposti" required autoComplete="email"/></label>
+              <label>Puhelinnumero<input type="tel" name="Puhelin" autoComplete="tel"/></label>
+            </div>
+            <div className="field-row">
+              <label>Reitti / reittitoive<input name="Reitti" placeholder="Esim. Kouvola → Helsinki"/></label>
+              <label>Nouto / toimitus<input name="Ajankohta" placeholder="Päivä ja kellonaika"/></label>
+            </div>
+            <label>Lämpötilavaatimus
+              <select name="Lämpötilavaatimus" defaultValue="">
+                <option value="" disabled>Valitse</option>
+                <option>Pakaste</option>
+                <option>Tuore</option>
+                <option>Kuivakuorma</option>
+                <option>Muu</option>
+              </select>
+            </label>
+            <label>Viesti / lisätiedot<textarea name="Viesti" rows={4}/></label>
+            <button className="button button-primary button-large" type="submit">Lähetä kuljetuspyyntö <span>→</span></button>
+          </form>
+        </div>
+      </section>
+    </>
+  );
+}
