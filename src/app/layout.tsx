@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, JetBrains_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const display = Montserrat({
@@ -15,10 +15,17 @@ const sans = Inter({
   display: "swap",
 });
 
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Juha Rantakaulio Oy | Lämpötilahallittu logistiikka",
+  title: "RANTAKAULIO | Lämpötilahallittu logistiikka",
   description:
-    "Lämpötilahallitut kuljetukset, elintarvikelogistiikka ja terminaalipalvelut Kouvolasta koko Suomeen.",
+    "Lämpötilahallitut kuljetukset, reaaliaikainen sijainti- ja lämpötilaseuranta sekä terminaalipalvelut Kouvolasta koko Suomeen.",
   robots: {
     index: false,
     follow: false,
@@ -32,7 +39,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fi">
-      <body className={`${display.variable} ${sans.variable}`}>{children}</body>
+      <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
