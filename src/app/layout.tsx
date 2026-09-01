@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, JetBrains_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const display = Montserrat({
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fi">
-      <body className={`${display.variable} ${sans.variable}`}>{children}</body>
+      <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>{children}</body>
     </html>
   );
 }
