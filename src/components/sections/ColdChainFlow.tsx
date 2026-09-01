@@ -104,7 +104,6 @@ function StepIcon({ type }: { type: Step["icon"] }) {
 export function ColdChainFlow() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -122,7 +121,7 @@ export function ColdChainFlow() {
 
   return (
     <section
-      ref={sectionRef}
+
       id="kylmaketju"
       aria-labelledby="cold-chain-title"
       className="border-y border-[#DDE3EA] bg-white py-16 md:py-24"
