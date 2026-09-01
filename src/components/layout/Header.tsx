@@ -1,62 +1,103 @@
+import { ArrowUpRight, Menu, PhoneCall } from "lucide-react";
+
 const navigation = [
+  { href: "#proof", label: "Todisteet" },
+  { href: "#prosessi", label: "Prosessi" },
   { href: "#palvelut", label: "Palvelut" },
-  { href: "#laatu", label: "Seuranta & laatu" },
-  { href: "#meista", label: "Meistä" },
-  { href: "#yhteystiedot", label: "Yhteystiedot" },
+  { href: "#yhteystiedot", label: "Tarjous" },
 ];
+
+function Mark() {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true" className="h-9 w-9">
+      <path
+        d="M13 12h27c8 0 14 6 14 14 0 6-3 11-9 13l11 13H43L31 38H25v14H13V12Zm12 10v7h14c2 0 4-1 4-3.5S41 22 39 22H25Z"
+        fill="currentColor"
+      />
+      <path d="M8 38h14l-7 8H3l5-8Z" fill="#D94125" />
+    </svg>
+  );
+}
 
 export function Header() {
   return (
-    <header className="site-header">
-      <div className="container header-inner">
-        <a className="brand-lockup" href="/" aria-label="Juha Rantakaulio Oy, etusivu">
-          <span className="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true">
-  <path d="M13 12h27c8 0 14 6 14 14 0 6-3 11-9 13l11 13H43L31 38H25v14H13V12Zm12 10v7h14c2 0 4-1 4-3.5S41 22 39 22H25Z" fill="currentColor"/>
-  <path d="M8 38h14l-7 8H3l5-8Z" fill="#D94125"/>
-</svg></span>
-          <span className="brand-wordmark">
-            <strong>Juha Rantakaulio Oy</strong>
-            <small>Lämpötilahallittu logistiikka</small>
+    <header className="sticky top-0 z-50 border-b border-[#DDE3EA] bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-16 w-[calc(100%-32px)] max-w-[1280px] items-center justify-between gap-4 md:h-[72px] md:w-[calc(100%-64px)]">
+        <a
+          href="/"
+          className="flex min-w-0 items-center gap-3 text-[#0F2C59]"
+          aria-label="Juha Rantakaulio Oy, etusivu"
+        >
+          <Mark />
+          <span className="min-w-0">
+            <strong className="block truncate font-[var(--font-display)] text-[13px] font-extrabold tracking-[-0.02em] md:text-sm">
+              RANTAKAULIO
+            </strong>
+            <span className="hidden text-[9px] font-bold uppercase tracking-[0.14em] text-[#657184] sm:block">
+              Lämpötilahallitut kuljetukset
+            </span>
           </span>
         </a>
 
-        <a className="header-phone" href="tel:+358503662215">
-          <span className="line-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 3.2 9.4 6.3a1.4 1.4 0 0 1 .2 1.6L8.2 10c1.1 2.3 3 4.2 5.3 5.3l2.2-1.4a1.4 1.4 0 0 1 1.6.2l3.1 2.7a1.4 1.4 0 0 1 .4 1.6c-.7 1.8-2.3 2.9-4.2 2.9C9 21.3 2.7 15 2.7 7.4c0-1.9 1.1-3.5 2.9-4.2a1.4 1.4 0 0 1 1.1 0Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
-          <span>
-            <small>Ajonjärjestely 24/7</small>
-            <strong>050 366 2215</strong>
-          </span>
-        </a>
-
-        <nav className="desktop-nav" aria-label="Päänavigaatio">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Päänavigaatio">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href}>{item.label}</a>
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#516072] transition-colors hover:text-[#0F2C59]"
+            >
+              {item.label}
+            </a>
           ))}
         </nav>
 
-        <a className="button button-primary header-cta" href="#yhteystiedot">
-          Pyydä kuljetusratkaisu
-        </a>
+        <div className="ml-auto hidden items-center gap-3 md:flex">
+          <a
+            href="tel:+358503662215"
+            className="inline-flex min-h-11 items-center gap-2 border border-[#DDE3EA] px-4 text-[11px] font-bold text-[#0F2C59]"
+          >
+            <PhoneCall className="h-4 w-4" strokeWidth={1.8} />
+            050 366 2215
+          </a>
+          <a
+            href="#yhteystiedot"
+            className="inline-flex min-h-11 items-center gap-2 bg-[#D94125] px-4 text-[11px] font-extrabold uppercase tracking-[0.06em] text-white transition-colors hover:bg-[#B7331D]"
+          >
+            Pyydä ratkaisu
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
+          </a>
+        </div>
 
-        <a className="mobile-call" href="tel:+358503662215" aria-label="Ajonjärjestely 24/7, 050 366 2215">
-          <span className="mobile-247-badge">24/7</span>
-          <strong className="mobile-phone-number">050 366 2215</strong>
-        </a>
-
-        <details className="mobile-menu">
-          <summary aria-label="Avaa valikko">
-            <span className="menu-icon" aria-hidden="true"><i /><i /></span>
+        <details className="relative md:hidden">
+          <summary
+            className="grid h-11 w-11 cursor-pointer list-none place-items-center border border-[#DDE3EA] text-[#0F2C59]"
+            aria-label="Avaa valikko"
+          >
+            <Menu className="h-5 w-5" strokeWidth={1.8} />
           </summary>
-          <nav aria-label="Mobiilinavigaatio">
-            <a className="mobile-menu-phone" href="tel:+358503662215">
-              <small>Ajonjärjestely 24/7</small>
-              <strong>050 366 2215</strong>
+          <nav className="absolute right-0 top-[calc(100%+10px)] grid w-[min(320px,calc(100vw-32px))] border border-[#DDE3EA] bg-white shadow-xl">
+            <a
+              href="tel:+358503662215"
+              className="flex items-center gap-3 border-b border-[#DDE3EA] px-4 py-4 text-sm font-bold text-[#0F2C59]"
+            >
+              <PhoneCall className="h-4 w-4" strokeWidth={1.8} />
+              Ajonjärjestely 24/7 · 050 366 2215
             </a>
             {navigation.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
+              <a
+                key={item.href}
+                href={item.href}
+                className="border-b border-[#DDE3EA] px-4 py-4 text-[11px] font-extrabold uppercase tracking-[0.08em] text-[#0F2C59]"
+              >
+                {item.label}
+              </a>
             ))}
-            <a className="button button-primary" href="#yhteystiedot">
+            <a
+              href="#yhteystiedot"
+              className="m-3 inline-flex min-h-12 items-center justify-center gap-2 bg-[#D94125] px-4 text-[11px] font-extrabold uppercase tracking-[0.06em] text-white"
+            >
               Pyydä kuljetusratkaisu
+              <ArrowUpRight className="h-4 w-4" />
             </a>
           </nav>
         </details>
