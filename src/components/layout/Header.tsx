@@ -1,8 +1,8 @@
 const navigation = [
-  { href: "#palvelut", label: "Palvelut" },
-  { href: "#laatu", label: "Tekniikka & laatu" },
-  { href: "#meista", label: "Meistä" },
-  { href: "#yhteystiedot", label: "Yhteystiedot" },
+  { href: "/#palvelut", label: "Palvelut" },
+  { href: "/#laatu", label: "Tekniikka & laatu" },
+  { href: "/#meista", label: "Meistä" },
+  { href: "/#yhteystiedot", label: "Yhteystiedot" },
 ];
 
 export function Header() {
@@ -34,7 +34,7 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="button button-primary header-cta" href="#yhteystiedot">
+        <a className="button button-primary header-cta" href="/tarjous">
           Pyydä kuljetustarjous
         </a>
 
@@ -55,7 +55,7 @@ export function Header() {
             {navigation.map((item) => (
               <a key={item.href} href={item.href}>{item.label}</a>
             ))}
-            <a className="button button-primary" href="#yhteystiedot">
+            <a className="button button-primary" href="/tarjous">
               Pyydä kuljetustarjous
             </a>
           </nav>
