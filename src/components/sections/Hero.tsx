@@ -28,7 +28,7 @@ export function Hero() {
           </p>
 
           <div className="hero-actions">
-            <a className="button button-primary button-large" href="#yhteystiedot">
+            <a className="button button-primary button-large" href="/tarjous">
               Pyydä kuljetustarjous <span aria-hidden="true">→</span>
             </a>
             <a className="hero-phone" href="tel:+358503662215">
