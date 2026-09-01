@@ -15,6 +15,12 @@ const sans = Inter({
   display: "swap",
 });
 
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Juha Rantakaulio Oy | Lämpötilahallittu logistiikka",
   description:
