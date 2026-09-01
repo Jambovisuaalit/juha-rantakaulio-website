@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { HomeSections } from "@/components/sections/HomeSections";
 import { ProofStrip } from "@/components/sections/ProofStrip";
-import { MobileCallDock } from "@/components/ui/MobileCallDock";
 
 const allDays = [
   "Monday",
@@ -75,22 +74,6 @@ const structuredData = {
         name: "Finland",
       },
       hoursAvailable: dispatchHours,
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Logistiikkapalvelut",
-        itemListElement: [
-          "Lämpötilahallitut kuljetukset",
-          "Elintarvikelogistiikka",
-          "Terminaali ja varastointi",
-          "Kokonaislogistiikka",
-        ].map((name) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name,
-          },
-        })),
-      },
     },
   ],
 };
@@ -109,7 +92,6 @@ export default function HomePage() {
         <HomeSections />
       </main>
       <Footer />
-      <MobileCallDock />
     </>
   );
 }
