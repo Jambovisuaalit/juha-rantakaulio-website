@@ -1,44 +1,59 @@
+import { Mail, MapPin, PhoneCall } from "lucide-react";
+
 export function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="container footer-grid">
-        <div className="footer-brand">
-          <a className="brand-lockup brand-lockup-light" href="/" aria-label="Juha Rantakaulio Oy">
-            <span className="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true">
-  <path d="M13 12h27c8 0 14 6 14 14 0 6-3 11-9 13l11 13H43L31 38H25v14H13V12Zm12 10v7h14c2 0 4-1 4-3.5S41 22 39 22H25Z" fill="currentColor"/>
-  <path d="M8 38h14l-7 8H3l5-8Z" fill="#D94125"/>
-</svg></span>
-            <span className="brand-wordmark">
-              <strong>Juha Rantakaulio Oy</strong>
-              <small>Lämpötilahallittu logistiikka</small>
-            </span>
+    <footer className="border-t border-white/10 bg-[#071A36] text-white">
+      <div className="mx-auto grid w-[calc(100%-32px)] max-w-[1280px] gap-10 py-12 md:w-[calc(100%-64px)] md:grid-cols-[1.4fr_1fr_1fr] md:py-14">
+        <div>
+          <div className="font-[var(--font-display)] text-xl font-extrabold tracking-[-0.03em]">
+            RANTAKAULIO
+          </div>
+          <p className="mt-3 max-w-md text-sm leading-6 text-white/60">
+            Lämpötilahallitut kuljetukset, joissa olennaiset tiedot eivät jää arvailun varaan.
+          </p>
+          <div className="mt-6 inline-flex border border-white/15 px-3 py-2 font-[var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.12em] text-white/65">
+            Kouvola · Suomi · 24/7
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-white/40">
+            Ajonjärjestely
+          </p>
+          <a href="tel:+358503662215" className="flex items-center gap-3 text-sm font-semibold text-white/85 hover:text-white">
+            <PhoneCall className="h-4 w-4" strokeWidth={1.8} />
+            050 366 2215
           </a>
-          <p>Kylmäketju ei saa katketa.</p>
+          <a href="mailto:ajo@rantakaulio.fi" className="flex items-center gap-3 text-sm text-white/65 hover:text-white">
+            <Mail className="h-4 w-4" strokeWidth={1.8} />
+            ajo@rantakaulio.fi
+          </a>
         </div>
 
-        <div>
-          <span className="footer-label">Ajonjärjestely 24/7</span>
-          <a href="tel:+358503662215">050 366 2215</a>
-          <a href="mailto:ajo@rantakaulio.fi">ajo@rantakaulio.fi</a>
-        </div>
-
-        <div>
-          <span className="footer-label">Myynti & tarjoukset</span>
-          <a href="tel:+35853755200">05 375 5200</a>
-          <a href="mailto:myynti@rantakaulio.fi">myynti@rantakaulio.fi</a>
-        </div>
-
-        <div>
-          <span className="footer-label">Yritys</span>
-          <strong>Juha Rantakaulio Oy</strong>
-          <span>Y-tunnus 0767846-3</span>
-          <span>Kouvola</span>
+        <div className="space-y-4">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-white/40">
+            Myynti
+          </p>
+          <a href="tel:+35853755200" className="flex items-center gap-3 text-sm font-semibold text-white/85 hover:text-white">
+            <PhoneCall className="h-4 w-4" strokeWidth={1.8} />
+            05 375 5200
+          </a>
+          <a href="mailto:myynti@rantakaulio.fi" className="flex items-center gap-3 text-sm text-white/65 hover:text-white">
+            <Mail className="h-4 w-4" strokeWidth={1.8} />
+            myynti@rantakaulio.fi
+          </a>
+          <div className="flex items-center gap-3 text-sm text-white/50">
+            <MapPin className="h-4 w-4" strokeWidth={1.8} />
+            Kouvola
+          </div>
         </div>
       </div>
 
-      <div className="container footer-bottom">
-        <span>© 2026 Juha Rantakaulio Oy</span>
-        <span>Julkinen verkkosivudemo</span>
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex w-[calc(100%-32px)] max-w-[1280px] flex-col gap-2 py-5 text-[10px] font-bold uppercase tracking-[0.1em] text-white/35 md:w-[calc(100%-64px)] md:flex-row md:justify-between">
+          <span>© 2026 Juha Rantakaulio Oy · Y-tunnus 0767846-3</span>
+          <span>Preview · noindex</span>
+        </div>
       </div>
     </footer>
   );
