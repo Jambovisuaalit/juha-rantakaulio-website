@@ -1,172 +1,454 @@
-import { ColdChainFlow } from "@/components/sections/ColdChainFlow";
-
-const serviceData = [
-  { icon: "temp", title: "Lämpötilahallitut kuljetukset", text: "Pakaste-, tuore- ja lämpöherkkien tuotteiden kuljetukset hallituissa lämpötiloissa koko Suomeen." },
-  { icon: "food", title: "Elintarvikelogistiikka", text: "Elintarvikkeiden kuljetus ja käsittely tuoteturvallisuus sekä toimitusvarmuus edellä." },
-  { icon: "warehouse", title: "Terminaali & varastointi", text: "Lämpötilasäädetty varastointi, tavarankäsittely, lajittelu ja keräily eri tarpeisiin." },
-  { icon: "route", title: "Kokonaislogistiikka", text: "Kuljetus- ja terminaaliratkaisut yrityksen toimitusketjun tarpeisiin." },
-];
-
-function LineIcon({ type }: { type: string }) {
-  const c = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  if (type === "temp") return <svg viewBox="0 0 24 24"><path {...c} d="M9 14.8V5a3 3 0 1 1 6 0v9.8a5 5 0 1 1-6 0Z"/><path {...c} d="M12 8v8"/></svg>;
-  if (type === "food") return <svg viewBox="0 0 24 24"><path {...c} d="M6 3v7M9 3v7M6 7h3M7.5 10v11"/><path {...c} d="M15 3v18M15 3c3 1.5 4 5 4 8h-4"/></svg>;
-  if (type === "warehouse") return <svg viewBox="0 0 24 24"><path {...c} d="m3 10 9-6 9 6v10H3Z"/><path {...c} d="M8 20v-6h8v6M8 10h8"/></svg>;
-  if (type === "route") return <svg viewBox="0 0 24 24"><path {...c} d="M4 18h4c3 0 3-6 6-6h6"/><path {...c} d="m17 9 3 3-3 3"/><circle {...c} cx="5" cy="6" r="2"/></svg>;
-  if (type === "gps") return <svg viewBox="0 0 24 24"><circle {...c} cx="12" cy="10" r="3"/><path {...c} d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/></svg>;
-  if (type === "report") return <svg viewBox="0 0 24 24"><path {...c} d="M5 3h14v18H5Z"/><path {...c} d="M8 8h8M8 12h8M8 16h5"/></svg>;
-  if (type === "eye") return <svg viewBox="0 0 24 24"><path {...c} d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle {...c} cx="12" cy="12" r="2.5"/></svg>;
-  return <svg viewBox="0 0 24 24"><path {...c} d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6Z"/><path {...c} d="m9 12 2 2 4-5"/></svg>;
-}
+import {
+  ArrowRight,
+  CheckCircle2,
+  Clock3,
+  FileSearch,
+  Mail,
+  MapPin,
+  PackageCheck,
+  PhoneCall,
+  PhoneOff,
+  Radio,
+  Route,
+  ShieldCheck,
+  Snowflake,
+  Thermometer,
+  Warehouse,
+} from "lucide-react";
 
 const painPoints = [
-  ["Missä kuorma on?", "Kuljetuksen tilaa ei pitäisi joutua selvittämään puhelimella."],
-  ["Pysyikö lämpötila hallinnassa?", "Kylmäketjun onnistumisen pitää perustua mitattavaan tietoon."],
-  ["Mitä tapahtui?", "Kun jotain pitää selvittää, vastauksen pitää perustua faktoihin."],
+  {
+    title: "Missä kuorma on?",
+    text: "Statuspuhelu ei saa olla ensisijainen seurantajärjestelmä.",
+    Icon: PhoneOff,
+  },
+  {
+    title: "Pysyikö lämpötila hallinnassa?",
+    text: "Kylmäketjun onnistumisen pitää perustua mitattavaan tietoon.",
+    Icon: Thermometer,
+  },
+  {
+    title: "Mitä tapahtui?",
+    text: "Poikkeama- ja reklamaatiotilanteessa tarvitaan faktat nopeasti.",
+    Icon: FileSearch,
+  },
 ];
 
-const qualityItems = [
-  ["gps", "Reaaliaikainen seuranta", "Kuljetuksen sijaintia ja lämpötilaa voidaan seurata koko matkan ajan."],
-  ["eye", "Asiakasnäkyvyys", "Olennaiset kuljetus- ja laadunvalvontatiedot voidaan tuoda asiakkaan käyttöön tarpeen mukaan."],
-  ["report", "Dokumentointi", "Kuljetuksia dokumentoidaan ja raportoidaan asiakkaan tarpeiden mukaan."],
-  ["shield", "Toimitusvarmuus", "Oikea kalusto, hallittu lämpötila ja tavoitettava ajonjärjestely muodostavat toimintavarman ketjun."],
+const process = [
+  {
+    step: "01",
+    title: "Hallitse",
+    text: "Oikea kalusto, sovittu aikataulu ja selkeä operatiivinen vastuu.",
+    Icon: ShieldCheck,
+  },
+  {
+    step: "02",
+    title: "Seuraa",
+    text: "Sijainti- ja lämpötilatieto kulkevat mukana FleetLogis-järjestelmässä.",
+    Icon: Radio,
+  },
+  {
+    step: "03",
+    title: "Todista",
+    text: "Kun tietoa tarvitaan, päätöksen ei tarvitse perustua muistikuviin tai arvaukseen.",
+    Icon: PackageCheck,
+  },
 ];
 
-const fleetImage = "/images/fleet-lineup.webp";
-const heroImage = "/images/rantakaulio-hero.webp";
+const services = [
+  {
+    title: "Lämpötilahallitut kuljetukset",
+    text: "Pakaste-, tuore- ja lämpöherkät tuotteet hallituissa lämpötiloissa koko Suomeen.",
+    Icon: Snowflake,
+  },
+  {
+    title: "Elintarvikelogistiikka",
+    text: "Kuljetus ja käsittely tuoteturvallisuus sekä toimitusvarmuus edellä.",
+    Icon: PackageCheck,
+  },
+  {
+    title: "Terminaali & varastointi",
+    text: "Lämpötilasäädetty varastointi, tavarankäsittely, lajittelu ja keräily.",
+    Icon: Warehouse,
+  },
+  {
+    title: "Kokonaislogistiikka",
+    text: "Kuljetus- ja terminaaliratkaisut yrityksen toimitusketjun tarpeisiin.",
+    Icon: Route,
+  },
+];
+
+const roi = [
+  "Vähemmän statuspuheluita",
+  "Nopeampi poikkeamien selvitys",
+  "Parempi kuljetustiedon todennettavuus",
+];
+
+function Label({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-[var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D94125]">
+      {children}
+    </p>
+  );
+}
 
 export function HomeSections() {
   return (
     <>
-      <section className="section problem-section" aria-labelledby="problem-title">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-kicker">Kun kaikki menee hyvin, kuljetusta ei tarvitse miettiä.</p>
-            <h2 id="problem-title">Ongelma alkaa, kun joku kysyy mitä tapahtui.</h2>
-            <p>Viivästys, lämpötilapoikkeama, reklamaatio tai auditointi muuttaa lupauksen nopeasti kysymykseksi: mitä oikeasti tapahtui ja milloin?</p>
+      <section className="border-b border-[#DDE3EA] bg-white py-20 md:py-28" aria-labelledby="problem-title">
+        <div className="mx-auto w-[calc(100%-32px)] max-w-[1280px] md:w-[calc(100%-64px)]">
+          <div className="max-w-[900px]">
+            <Label>Toimialan kitka</Label>
+            <h2
+              id="problem-title"
+              className="mt-4 max-w-[12ch] font-[var(--font-display)] text-[clamp(40px,5.4vw,72px)] font-extrabold leading-[0.96] tracking-[-0.05em] text-[#0F2C59]"
+            >
+              Ongelma alkaa, kun joku kysyy mitä tapahtui.
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-[#657184]">
+              Viivästys, lämpötilapoikkeama, reklamaatio tai auditointi muuttaa kuljetuksen nopeasti kysymykseksi: missä oltiin, mitä lämpötilalle tapahtui ja milloin.
+            </p>
           </div>
-          <div className="pain-grid">
-            {painPoints.map(([title, text], index) => (
-              <article className="pain-item" key={title}>
-                <span className="pain-index">0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+
+          <div className="mt-12 grid border-l border-t border-[#DDE3EA] md:grid-cols-3">
+            {painPoints.map(({ title, text, Icon }, index) => (
+              <article
+                key={title}
+                className="min-h-[240px] border-b border-r border-[#DDE3EA] p-6 md:p-8"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="grid h-10 w-10 place-items-center border border-[#DDE3EA] bg-[#F7F9FC] text-[#0F2C59]">
+                    <Icon className="h-5 w-5" strokeWidth={1.7} />
+                  </div>
+                  <span className="font-[var(--font-mono)] text-[10px] font-semibold text-[#A6B1BF]">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h3 className="mt-10 font-[var(--font-display)] text-2xl font-extrabold tracking-[-0.03em] text-[#0F2C59]">
+                  {title}
+                </h3>
+                <p className="mt-3 max-w-[34ch] text-sm leading-6 text-[#657184]">{text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <ColdChainFlow />
+      <section id="prosessi" className="border-b border-[#DDE3EA] bg-[#F7F9FC] py-20 md:py-28">
+        <div className="mx-auto w-[calc(100%-32px)] max-w-[1280px] md:w-[calc(100%-64px)]">
+          <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <Label>Toimintamalli</Label>
+              <h2 className="mt-4 font-[var(--font-display)] text-[clamp(40px,4.8vw,66px)] font-extrabold leading-[0.96] tracking-[-0.05em] text-[#0F2C59]">
+                Hallitse. Seuraa. Todista.
+              </h2>
+              <p className="mt-5 max-w-md text-sm leading-6 text-[#657184] md:text-base md:leading-7">
+                Ei ylimääräistä teknologiajargonia. Kolme asiaa ratkaisevat: operaatio, näkyvyys ja tieto, johon voidaan palata.
+              </p>
+            </div>
 
-      <section className="section services-section" id="palvelut">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-kicker">Palvelut</p>
-            <h2>Lämpötilahallittu logistiikka ilman ylimääräistä kitkaa.</h2>
-            <p>Oikea kuljetusratkaisu, hallittu lämpötila ja selkeä vastuu koko ketjun ajan.</p>
-          </div>
-          <div className="services-grid">
-            {serviceData.map((service) => (
-              <article className="service-card" key={service.title}>
-                <span className="service-icon"><LineIcon type={service.icon}/></span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="quality-section" id="laatu">
-        <div className="container quality-grid">
-          <div className="quality-copy">
-            <p className="section-kicker section-kicker-light">Seuranta & laatu</p>
-            <h2>Oikea lämpötila ei riitä. Tarvitaan myös näyttö.</h2>
-            <p className="quality-lead">RANTAKAULION nykyinen seuranta yhdistää sijainti- ja lämpötilatiedon operatiiviseen kuljetusprosessiin. Kun jotain pitää selvittää, päätöksen ei tarvitse perustua arvaukseen.</p>
-            <div className="quality-items">
-              {qualityItems.map(([icon, title, text]) => (
-                <article key={title}>
-                  <span className="quality-icon"><LineIcon type={icon}/></span>
-                  <div><h3>{title}</h3><p>{text}</p></div>
+            <div className="border-l border-t border-[#DDE3EA] bg-white">
+              {process.map(({ step, title, text, Icon }) => (
+                <article
+                  key={step}
+                  className="grid gap-5 border-b border-r border-[#DDE3EA] p-6 sm:grid-cols-[76px_1fr_auto] sm:items-center md:p-8"
+                >
+                  <span className="font-[var(--font-mono)] text-sm font-semibold text-[#D94125]">{step}</span>
+                  <div>
+                    <h3 className="font-[var(--font-display)] text-2xl font-extrabold tracking-[-0.03em] text-[#0F2C59]">
+                      {title}
+                    </h3>
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-[#657184]">{text}</p>
+                  </div>
+                  <Icon className="hidden h-6 w-6 text-[#0F2C59] sm:block" strokeWidth={1.6} />
                 </article>
               ))}
             </div>
           </div>
-          <div className="quality-visual">
-            <div className="quality-photo">
-              <picture>
-                <source srcSet="/images/fleet-lineup.webp" type="image/webp"/>
-                <img src={fleetImage} alt="Juha Rantakaulio Oy:n kuljetuskalustoa" width="760" height="428" loading="lazy"/>
-              </picture>
+        </div>
+      </section>
+
+      <section id="laatu" className="overflow-hidden bg-[#071A36] text-white">
+        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[.95fr_1.05fr]">
+          <div className="flex items-center px-5 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28 xl:px-20">
+            <div className="max-w-[650px]">
+              <p className="font-[var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.14em] text-[#FFB7A6]">
+                Operatiivinen näkyvyys
+              </p>
+              <h2 className="mt-4 font-[var(--font-display)] text-[clamp(42px,5vw,70px)] font-extrabold leading-[0.95] tracking-[-0.05em]">
+                Oikea lämpötila ei riitä. Tarvitaan myös näyttö.
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-7 text-white/62">
+                RANTAKAULION nykyinen seuranta yhdistää sijainti- ja lämpötilatiedon operatiiviseen kuljetusprosessiin. Kun jotain pitää selvittää, faktat ovat lähtökohta.
+              </p>
+
+              <div className="mt-9 grid gap-px bg-white/10 sm:grid-cols-2">
+                <div className="bg-[#0A2144] p-5">
+                  <MapPin className="h-5 w-5 text-white/75" strokeWidth={1.6} />
+                  <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-white/40">Sijainti</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold uppercase">Reaaliaikainen</p>
+                </div>
+                <div className="bg-[#0A2144] p-5">
+                  <Thermometer className="h-5 w-5 text-white/75" strokeWidth={1.6} />
+                  <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-white/40">Lämpötila</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold uppercase">Reaaliaikainen</p>
+                </div>
+                <div className="bg-[#0A2144] p-5">
+                  <Radio className="h-5 w-5 text-white/75" strokeWidth={1.6} />
+                  <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-white/40">Järjestelmä</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold uppercase">FleetLogis</p>
+                </div>
+                <div className="bg-[#0A2144] p-5">
+                  <Clock3 className="h-5 w-5 text-white/75" strokeWidth={1.6} />
+                  <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-white/40">Ajonjärjestely</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold uppercase">24/7</p>
+                </div>
+              </div>
+
+              <div className="mt-8 space-y-3">
+                {roi.map((item) => (
+                  <div key={item} className="flex items-center gap-3 text-sm text-white/72">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-[#FFB7A6]" strokeWidth={1.8} />
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="quality-data">
-              <div><small>Seuranta</small><strong>FLEETLOGIS</strong></div>
-              <div><small>Kalusto</small><strong>ATP</strong></div>
-              <div><small>Ajojärjestely</small><strong>24/7</strong></div>
+          </div>
+
+          <div className="relative min-h-[520px] border-t border-white/10 lg:min-h-[760px] lg:border-l lg:border-t-0">
+            <img
+              src="/images/fleet-lineup.webp"
+              alt="Juha Rantakaulio Oy:n lämpötilahallittua kuljetuskalustoa"
+              width="760"
+              height="428"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#071A36] via-[#071A36]/30 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 border border-white/20 bg-[#071A36]/90 p-5 backdrop-blur-sm sm:bottom-8 sm:left-8 sm:right-8">
+              <p className="font-[var(--font-mono)] text-[9px] font-semibold uppercase tracking-[0.14em] text-white/45">
+                Proof stack
+              </p>
+              <div className="mt-4 grid grid-cols-3 divide-x divide-white/10 border-y border-white/10">
+                <div className="py-4 pr-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-white/35">Kalusto</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold">ATP</p>
+                </div>
+                <div className="px-4 py-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-white/35">Seuranta</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold">LIVE</p>
+                </div>
+                <div className="py-4 pl-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-white/35">Alue</p>
+                  <p className="mt-1 font-[var(--font-mono)] text-sm font-semibold">SUOMI</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="about-section" id="meista">
-        <div className="container about-grid">
-          <figure className="about-photo">
+      <section id="palvelut" className="border-b border-[#DDE3EA] bg-white py-20 md:py-28">
+        <div className="mx-auto w-[calc(100%-32px)] max-w-[1280px] md:w-[calc(100%-64px)]">
+          <div className="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
+            <div>
+              <Label>Palvelut</Label>
+              <h2 className="mt-4 font-[var(--font-display)] text-[clamp(40px,4.8vw,64px)] font-extrabold leading-[0.96] tracking-[-0.05em] text-[#0F2C59]">
+                Kylmäketju ilman ylimääräistä kitkaa.
+              </h2>
+            </div>
+            <p className="max-w-xl self-end text-sm leading-6 text-[#657184] md:text-base md:leading-7">
+              Oikea kuljetusratkaisu, hallittu lämpötila ja selkeä vastuu koko ketjun ajan.
+            </p>
+          </div>
+
+          <div className="mt-12 grid border-l border-t border-[#DDE3EA] md:grid-cols-2">
+            {services.map(({ title, text, Icon }) => (
+              <article
+                key={title}
+                className="group min-h-[250px] border-b border-r border-[#DDE3EA] p-6 transition-colors hover:bg-[#F7F9FC] md:p-8"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="grid h-11 w-11 place-items-center border border-[#DDE3EA] text-[#0F2C59]">
+                    <Icon className="h-5 w-5" strokeWidth={1.7} />
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-[#B5C0CC] transition-transform group-hover:translate-x-1 group-hover:text-[#D94125]" strokeWidth={1.6} />
+                </div>
+                <h3 className="mt-10 max-w-[18ch] font-[var(--font-display)] text-2xl font-extrabold tracking-[-0.03em] text-[#0F2C59]">
+                  {title}
+                </h3>
+                <p className="mt-3 max-w-[48ch] text-sm leading-6 text-[#657184]">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="meista" className="border-b border-[#DDE3EA] bg-[#F7F9FC] py-20 md:py-28">
+        <div className="mx-auto grid w-[calc(100%-32px)] max-w-[1280px] gap-10 md:w-[calc(100%-64px)] lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
+          <figure className="m-0 overflow-hidden border border-[#DDE3EA] bg-white">
             <picture>
-              <source srcSet="/images/rantakaulio-hero.avif" type="image/avif"/>
-              <source srcSet="/images/rantakaulio-hero.webp" type="image/webp"/>
-              <img src={heroImage} alt="Juha Rantakaulio Oy:n kalustoa" width="760" height="428" loading="lazy"/>
+              <source srcSet="/images/rantakaulio-hero.avif" type="image/avif" />
+              <source srcSet="/images/rantakaulio-hero.webp" type="image/webp" />
+              <img
+                src="/images/rantakaulio-hero.webp"
+                alt="Juha Rantakaulio Oy:n kuljetuskalustoa"
+                width="760"
+                height="428"
+                loading="lazy"
+                className="aspect-[4/3] h-full w-full object-cover"
+              />
             </picture>
           </figure>
-          <div className="about-copy">
-            <p className="section-kicker">Kokemus</p>
-            <h2>Kokemus kuljettaa. Data todistaa.</h2>
-            <p>RANTAKAULION kuljetustoiminnan juuret ulottuvat vuoteen 1984. Kalusto, kapasiteetti ja järjestelmät ovat kehittyneet — vastuu sovitusta kuljetuksesta ei.</p>
-            <div className="about-values">
-              <div><strong>Lähes 40 v</strong><span>Kokemusta</span></div>
-              <div><strong>Kouvola</strong><span>Kotipaikka</span></div>
-              <div><strong>Koko Suomi</strong><span>Toimitusalue</span></div>
+
+          <div>
+            <Label>Kokemus</Label>
+            <h2 className="mt-4 font-[var(--font-display)] text-[clamp(40px,4.8vw,66px)] font-extrabold leading-[0.96] tracking-[-0.05em] text-[#0F2C59]">
+              Kokemus kuljettaa. Data todistaa.
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#657184]">
+              RANTAKAULION kuljetustoiminnan juuret ulottuvat vuoteen 1984. Kalusto, kapasiteetti ja järjestelmät ovat kehittyneet — vastuu sovitusta kuljetuksesta ei.
+            </p>
+
+            <div className="mt-8 grid grid-cols-3 border-l border-t border-[#DDE3EA] bg-white">
+              <div className="border-b border-r border-[#DDE3EA] p-4 sm:p-5">
+                <p className="font-[var(--font-display)] text-xl font-extrabold text-[#0F2C59]">~40 v</p>
+                <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.1em] text-[#7A8796]">Kokemusta</p>
+              </div>
+              <div className="border-b border-r border-[#DDE3EA] p-4 sm:p-5">
+                <p className="font-[var(--font-display)] text-xl font-extrabold text-[#0F2C59]">ATP</p>
+                <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.1em] text-[#7A8796]">Kalusto</p>
+              </div>
+              <div className="border-b border-r border-[#DDE3EA] p-4 sm:p-5">
+                <p className="font-[var(--font-display)] text-xl font-extrabold text-[#0F2C59]">Suomi</p>
+                <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.1em] text-[#7A8796]">Toimitusalue</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="contact-section" id="yhteystiedot">
-        <div className="container contact-grid">
-          <div className="contact-copy">
-            <p className="section-kicker section-kicker-light">Kuljetustarjous</p>
-            <h2>Tarvitsetko kuljetuksen, jonka onnistumista ei tarvitse arvailla?</h2>
-            <p>Kerro lähtöpaikka, määränpää, ajankohta ja lämpötilavaatimus. Saat arvion tarpeeseesi sopivasta kuljetusratkaisusta.</p>
-            <div className="direct-contacts">
-              <a href="tel:+358503662215"><small>Ajonjärjestely 24/7</small><strong>050 366 2215</strong><span>ajo@rantakaulio.fi</span></a>
-              <a href="tel:+35853755200"><small>Myynti & tarjoukset</small><strong>05 375 5200</strong><span>myynti@rantakaulio.fi</span></a>
+      <section id="yhteystiedot" className="bg-white py-20 md:py-28">
+        <div className="mx-auto grid w-[calc(100%-32px)] max-w-[1280px] gap-10 md:w-[calc(100%-64px)] lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+          <div>
+            <Label>Kuljetustarjous</Label>
+            <h2 className="mt-4 max-w-[10ch] font-[var(--font-display)] text-[clamp(42px,5vw,70px)] font-extrabold leading-[0.95] tracking-[-0.05em] text-[#0F2C59]">
+              Tarvitsetko kuljetuksen, jonka onnistumista ei tarvitse arvailla?
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#657184]">
+              Kerro reitti, ajankohta ja lämpötilavaatimus. Saat arvion tarpeeseesi sopivasta kuljetusratkaisusta.
+            </p>
+
+            <div className="mt-8 grid gap-3">
+              <a
+                href="tel:+358503662215"
+                className="flex items-center justify-between gap-4 border border-[#DDE3EA] px-5 py-4 text-[#0F2C59]"
+              >
+                <span className="flex items-center gap-3">
+                  <PhoneCall className="h-5 w-5" strokeWidth={1.7} />
+                  <span>
+                    <span className="block text-[9px] font-bold uppercase tracking-[0.1em] text-[#7A8796]">Ajonjärjestely 24/7</span>
+                    <strong className="mt-1 block text-base">050 366 2215</strong>
+                  </span>
+                </span>
+                <ArrowRight className="h-5 w-5" strokeWidth={1.7} />
+              </a>
+              <a
+                href="mailto:myynti@rantakaulio.fi"
+                className="flex items-center justify-between gap-4 border border-[#DDE3EA] px-5 py-4 text-[#0F2C59]"
+              >
+                <span className="flex items-center gap-3">
+                  <Mail className="h-5 w-5" strokeWidth={1.7} />
+                  <span>
+                    <span className="block text-[9px] font-bold uppercase tracking-[0.1em] text-[#7A8796]">Myynti</span>
+                    <strong className="mt-1 block text-base">myynti@rantakaulio.fi</strong>
+                  </span>
+                </span>
+                <ArrowRight className="h-5 w-5" strokeWidth={1.7} />
+              </a>
             </div>
           </div>
 
-          <form className="quote-form" action="mailto:myynti@rantakaulio.fi" method="post" encType="text/plain">
-            <div className="field-row">
-              <label>Nimi *<input name="Nimi" required autoComplete="name"/></label>
-              <label>Yritys *<input name="Yritys" required autoComplete="organization"/></label>
+          <form
+            className="border border-[#DDE3EA] bg-[#F7F9FC] p-5 sm:p-7 md:p-8"
+            action="mailto:myynti@rantakaulio.fi"
+            method="post"
+            encType="text/plain"
+          >
+            <div className="mb-7 flex items-center justify-between gap-4 border-b border-[#DDE3EA] pb-5">
+              <div>
+                <p className="font-[var(--font-mono)] text-[9px] font-semibold uppercase tracking-[0.14em] text-[#D94125]">RFQ / Kuljetuspyyntö</p>
+                <p className="mt-1 text-sm font-semibold text-[#0F2C59]">Minimitiedot arvioon</p>
+              </div>
+              <span className="font-[var(--font-mono)] text-[9px] font-semibold uppercase text-[#8D99A8]">Ei sitoumusta</span>
             </div>
-            <div className="field-row">
-              <label>Sähköposti *<input type="email" name="Sähköposti" required autoComplete="email"/></label>
-              <label>Puhelinnumero<input type="tel" name="Puhelin" autoComplete="tel"/></label>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="grid gap-2 text-[10px] font-bold uppercase tracking-[0.08em] text-[#0F2C59]">
+                Yritys *
+                <input
+                  name="Yritys"
+                  required
+                  autoComplete="organization"
+                  className="min-h-12 border border-[#C8D1DC] bg-white px-3 text-sm font-normal normal-case text-[#172033] outline-none transition-colors focus:border-[#0F2C59]"
+                />
+              </label>
+              <label className="grid gap-2 text-[10px] font-bold uppercase tracking-[0.08em] text-[#0F2C59]">
+                Sähköposti *
+                <input
+                  type="email"
+                  name="Sähköposti"
+                  required
+                  autoComplete="email"
+                  className="min-h-12 border border-[#C8D1DC] bg-white px-3 text-sm font-normal normal-case text-[#172033] outline-none transition-colors focus:border-[#0F2C59]"
+                />
+              </label>
+              <label className="grid gap-2 text-[10px] font-bold uppercase tracking-[0.08em] text-[#0F2C59]">
+                Reitti
+                <input
+                  name="Reitti"
+                  placeholder="Kouvola → Helsinki"
+                  className="min-h-12 border border-[#C8D1DC] bg-white px-3 text-sm font-normal normal-case text-[#172033] outline-none transition-colors focus:border-[#0F2C59]"
+                />
+              </label>
+              <label className="grid gap-2 text-[10px] font-bold uppercase tracking-[0.08em] text-[#0F2C59]">
+                Lämpötilavaatimus
+                <select
+                  name="Lämpötilavaatimus"
+                  defaultValue=""
+                  className="min-h-12 border border-[#C8D1DC] bg-white px-3 text-sm font-normal normal-case text-[#172033] outline-none transition-colors focus:border-[#0F2C59]"
+                >
+                  <option value="">Valitse</option>
+                  <option>Pakaste</option>
+                  <option>Tuore</option>
+                  <option>Kuivakuorma</option>
+                  <option>Muu</option>
+                </select>
+              </label>
             </div>
-            <div className="field-row">
-              <label>Reitti / reittitoive<input name="Reitti" placeholder="Esim. Kouvola → Helsinki"/></label>
-              <label>Nouto / toimitus<input name="Ajankohta" placeholder="Päivä ja kellonaika"/></label>
-            </div>
-            <label>Lämpötilavaatimus
-              <select name="Lämpötilavaatimus" defaultValue="">
-                <option value="" disabled>Valitse</option>
-                <option>Pakaste</option>
-                <option>Tuore</option>
-                <option>Kuivakuorma</option>
-                <option>Muu</option>
-              </select>
+
+            <label className="mt-5 grid gap-2 text-[10px] font-bold uppercase tracking-[0.08em] text-[#0F2C59]">
+              Kuljetustarve
+              <textarea
+                name="Viesti"
+                rows={4}
+                placeholder="Ajankohta, määrä, erityisvaatimukset..."
+                className="border border-[#C8D1DC] bg-white p-3 text-sm font-normal normal-case text-[#172033] outline-none transition-colors focus:border-[#0F2C59]"
+              />
             </label>
-            <label>Viesti / lisätiedot<textarea name="Viesti" rows={4}/></label>
-            <button className="button button-primary button-large" type="submit">Lähetä kuljetuspyyntö <span>→</span></button>
+
+            <button
+              type="submit"
+              className="mt-6 inline-flex min-h-14 w-full items-center justify-center gap-2 bg-[#D94125] px-6 text-[11px] font-extrabold uppercase tracking-[0.07em] text-white transition-colors hover:bg-[#B7331D]"
+            >
+              Lähetä kuljetuspyyntö
+              <ArrowRight className="h-4 w-4" strokeWidth={2} />
+            </button>
+
+            <p className="mt-3 text-center text-[10px] leading-4 text-[#7A8796]">
+              Lomake avaa sähköpostiohjelman. Tuotantoversioon voidaan kytkeä suora Vercel API -lead flow.
+            </p>
           </form>
         </div>
       </section>
