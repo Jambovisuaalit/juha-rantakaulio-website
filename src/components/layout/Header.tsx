@@ -1,6 +1,6 @@
 const navigation = [
   { href: "#palvelut", label: "Palvelut" },
-  { href: "#laatu", label: "Tekniikka & laatu" },
+  { href: "#laatu", label: "Seuranta & laatu" },
   { href: "#meista", label: "Meistä" },
   { href: "#yhteystiedot", label: "Yhteystiedot" },
 ];
@@ -35,7 +35,7 @@ export function Header() {
         </nav>
 
         <a className="button button-primary header-cta" href="#yhteystiedot">
-          Pyydä kuljetustarjous
+          Pyydä kuljetusratkaisu
         </a>
 
         <a className="mobile-call" href="tel:+358503662215" aria-label="Ajonjärjestely 24/7, 050 366 2215">
@@ -56,7 +56,7 @@ export function Header() {
               <a key={item.href} href={item.href}>{item.label}</a>
             ))}
             <a className="button button-primary" href="#yhteystiedot">
-              Pyydä kuljetustarjous
+              Pyydä kuljetusratkaisu
             </a>
           </nav>
         </details>
