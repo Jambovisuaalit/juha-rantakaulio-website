@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Step = {
   id: string;
@@ -26,7 +26,7 @@ const steps: Step[] = [
     title: "Valvonta",
     short: "Tieto kulkee mukana",
     description:
-      "Kuljetuksen sijaintia ja lämpötilaa voidaan seurata FleetLogis-järjestelmällä koko matkan ajan. Poikkeamiin voidaan reagoida nopeasti.",
+      "Kuljetuksen sijaintia ja lämpötilaa voidaan seurata FleetLogis-järjestelmällä koko matkan ajan. Seuranta tukee nopeaa reagointia poikkeamiin.",
     proof: "Reaaliaikainen seuranta",
     icon: "monitor",
   },
@@ -116,7 +116,7 @@ export function ColdChainFlow() {
     }, 5200);
 
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [paused, activeIndex]);
 
   const active = steps[activeIndex];
 
@@ -135,7 +135,7 @@ export function ColdChainFlow() {
         }
       }}
     >
-      <div className="mx-auto w-[min(1280px,calc(100%-40px))] md:w-[min(1280px,calc(100%-96px))]">
+      <div className="mx-auto w-[calc(100%_-_40px)] max-w-[1280px] md:w-[calc(100%_-_96px)]">
         <div className="mb-9 max-w-3xl md:mb-12">
           <p className="mb-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#D94125]">
             Kylmäketju käytännössä
