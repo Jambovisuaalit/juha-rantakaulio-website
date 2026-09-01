@@ -1,7 +1,7 @@
 const proof = [
-  { icon: "history", value: "Lähes 40 vuotta", label: "Perheyrityksen kokemusta" },
-  { icon: "gps", value: "FleetLogis", label: "Sijainti ja lämpötila reaaliajassa" },
-  { icon: "atp", value: "ATP-kalusto", label: "Hallittu lämpötila ympäri vuoden" },
+  { icon: "history", value: "Lähes 40 vuotta", label: "Lämpötilahallittua logistiikkaa" },
+  { icon: "gps", value: "FleetLogis", label: "Sijainti + lämpötila reaaliajassa" },
+  { icon: "atp", value: "ATP", label: "Lämpötilakuljetuksiin soveltuva kalusto" },
   { icon: "phone", value: "24/7", label: "Ajonjärjestely aina tavoitettavissa" },
 ];
 
