@@ -11,7 +11,7 @@ const proofCards = [
     meta: "VALTAKUNNALLINEN",
     title: "KOKO SUOMI",
     body:
-      "Tarkkaan valitut ja auditoidut kumppaniverkostot takaavat täsmälliset toimitukset Hangosta Utsjoelle.",
+      "Tarkkaan valittu ja luotettava kumppaniverkosto takaa täsmälliset toimitukset Hangosta Utsjoelle.",
   },
   {
     number: "03",
