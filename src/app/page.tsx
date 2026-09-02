@@ -1,9 +1,10 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { HomeSections } from "@/components/sections/HomeSections";
 import { ProofStrip } from "@/components/sections/ProofStrip";
+import { CoverageNetwork } from "@/components/sections/CoverageNetwork";
 import { MobileCallDock } from "@/components/ui/MobileCallDock";
+import { MasterSections } from "@/components/sections/MasterSections";
 
 const allDays = [
   "Monday",
@@ -32,7 +33,7 @@ const structuredData = {
       legalName: "Juha Rantakaulio Oy",
       url: "https://rantakaulio.fi/",
       telephone: "+358503662215",
-      email: "ajo@rantakaulio.fi",
+      email: "henri@rantakaulio.fi",
       taxID: "0767846-3",
       address: {
         "@type": "PostalAddress",
@@ -50,7 +51,6 @@ const structuredData = {
           "@type": "ContactPoint",
           contactType: "ajonjärjestely",
           telephone: "+358503662215",
-          email: "ajo@rantakaulio.fi",
           areaServed: "FI",
           availableLanguage: ["fi"],
           hoursAvailable: dispatchHours,
@@ -63,8 +63,8 @@ const structuredData = {
       name: "Lämpötilahallitut kuljetukset ja elintarvikelogistiikka",
       serviceType: [
         "Lämpötilahallitut kuljetukset",
-        "Elintarvikelogistiikka",
-        "Terminaali ja varastointi",
+        "Viileäterminaali ja varastointi",
+        "Lajittelu ja keräily",
         "Kokonaislogistiikka",
       ],
       provider: {
@@ -80,8 +80,8 @@ const structuredData = {
         name: "Logistiikkapalvelut",
         itemListElement: [
           "Lämpötilahallitut kuljetukset",
-          "Elintarvikelogistiikka",
-          "Terminaali ja varastointi",
+          "Viileäterminaali ja varastointi",
+          "Lajittelu ja keräily",
           "Kokonaislogistiikka",
         ].map((name) => ({
           "@type": "Offer",
@@ -105,8 +105,9 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <CoverageNetwork />
         <ProofStrip />
-        <HomeSections />
+        <MasterSections />
       </main>
       <Footer />
       <MobileCallDock />
