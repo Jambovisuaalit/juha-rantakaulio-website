@@ -33,7 +33,7 @@ const structuredData = {
       legalName: "Juha Rantakaulio Oy",
       url: "https://rantakaulio.fi/",
       telephone: "+358503662215",
-      email: "ajo@rantakaulio.fi",
+      email: "henri@rantakaulio.fi",
       taxID: "0767846-3",
       address: {
         "@type": "PostalAddress",
@@ -51,7 +51,6 @@ const structuredData = {
           "@type": "ContactPoint",
           contactType: "ajonjärjestely",
           telephone: "+358503662215",
-          email: "ajo@rantakaulio.fi",
           areaServed: "FI",
           availableLanguage: ["fi"],
           hoursAvailable: dispatchHours,
@@ -64,8 +63,8 @@ const structuredData = {
       name: "Lämpötilahallitut kuljetukset ja elintarvikelogistiikka",
       serviceType: [
         "Lämpötilahallitut kuljetukset",
-        "Elintarvikelogistiikka",
-        "Terminaali ja varastointi",
+        "Viileäterminaali ja varastointi",
+        "Lajittelu ja keräily",
         "Kokonaislogistiikka",
       ],
       provider: {
@@ -81,8 +80,8 @@ const structuredData = {
         name: "Logistiikkapalvelut",
         itemListElement: [
           "Lämpötilahallitut kuljetukset",
-          "Elintarvikelogistiikka",
-          "Terminaali ja varastointi",
+          "Viileäterminaali ja varastointi",
+          "Lajittelu ja keräily",
           "Kokonaislogistiikka",
         ].map((name) => ({
           "@type": "Offer",
