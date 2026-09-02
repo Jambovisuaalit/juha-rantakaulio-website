@@ -18,7 +18,10 @@ export function Header() {
             </svg>
           </span>
           <span className="brand-wordmark">
-            <strong>Juha Rantakaulio Oy</strong>
+            <strong>
+              <span className="brand-name-full">Juha Rantakaulio Oy</span>
+              <span className="brand-name-mobile">Rantakaulio</span>
+            </strong>
             <small>Lämpötilahallittu logistiikka</small>
           </span>
         </a>
