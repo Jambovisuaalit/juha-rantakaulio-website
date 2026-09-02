@@ -1,10 +1,10 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { HomeSections } from "@/components/sections/HomeSections";
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { CoverageNetwork } from "@/components/sections/CoverageNetwork";
 import { MobileCallDock } from "@/components/ui/MobileCallDock";
+import { MasterSections } from "@/components/sections/MasterSections";
 
 const allDays = [
   "Monday",
@@ -108,7 +108,7 @@ export default function HomePage() {
         <Hero />
         <CoverageNetwork />
         <ProofStrip />
-        <HomeSections />
+        <MasterSections />
       </main>
       <Footer />
       <MobileCallDock />
