@@ -861,6 +861,7 @@
 
 @media(max-width:1280px){
   .header-phone{display:none}
+  .header-inner{grid-template-columns:auto 1fr auto}
   .desktop-nav{gap:16px}
   .desktop-nav a{font-size:10px}
 }
@@ -879,6 +880,7 @@
 }
 @media(max-width:980px){
   .desktop-nav,.header-cta{display:none}
+  .header-inner{grid-template-columns:1fr auto auto}
 }
 @media(max-width:760px){
   .master-hero h1{font-size:clamp(40px,11vw,56px)}
@@ -897,7 +899,11 @@
   .terminal-copy h2,
   .people-lead-grid h2,
   .faq-head h2,
-  .final-cta-grid h2{font-size:clamp(36px,10vw,48px)}
+  .final-cta-grid h2{
+    font-size:clamp(36px,10vw,48px);
+    overflow-wrap:anywhere;
+    hyphens:auto;
+  }
   .mechanism-card,
   .master-service-card{padding:24px 20px}
   .master-services-grid{grid-template-columns:1fr;border-left:0}

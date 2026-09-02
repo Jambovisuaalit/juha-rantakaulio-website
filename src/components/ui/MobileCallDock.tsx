@@ -7,17 +7,19 @@ export function MobileCallDock() {
 
   useEffect(() => {
     const hero = document.querySelector(".hero");
-    const contact = document.querySelector("#yhteystiedot");
+    const blockers = document.querySelectorAll(
+      "#yritys, .final-cta-section, footer"
+    );
 
     if (!hero || !("IntersectionObserver" in window)) {
       return;
     }
 
     let heroVisible = true;
-    let contactVisible = false;
+    const visibleBlockers = new Set<Element>();
 
     const syncVisibility = () => {
-      setVisible(!heroVisible && !contactVisible);
+      setVisible(!heroVisible && visibleBlockers.size === 0);
     };
 
     const heroObserver = new IntersectionObserver(
@@ -28,10 +30,16 @@ export function MobileCallDock() {
       { threshold: 0.01 }
     );
 
-    const contactObserver = contact
+    const blockerObserver = blockers.length
       ? new IntersectionObserver(
-          ([entry]) => {
-            contactVisible = entry.isIntersecting;
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                visibleBlockers.add(entry.target);
+              } else {
+                visibleBlockers.delete(entry.target);
+              }
+            });
             syncVisibility();
           },
           { threshold: 0.01 }
@@ -39,11 +47,11 @@ export function MobileCallDock() {
       : null;
 
     heroObserver.observe(hero);
-    if (contact && contactObserver) contactObserver.observe(contact);
+    blockers.forEach((blocker) => blockerObserver?.observe(blocker));
 
     return () => {
       heroObserver.disconnect();
-      contactObserver?.disconnect();
+      blockerObserver?.disconnect();
     };
   }, []);
 
