@@ -1,8 +1,8 @@
 const proof = [
-  { value: "40 VUOTTA", label: "Lämpötilahallittua kokemusta Kouvolasta." },
+  { value: "LÄHES 40 VUOTTA", label: "Lämpötilahallittua logistiikkaa vuodesta 1989." },
   { value: "FLEETLOGIS", label: "Reaaliaikainen lämpötilaseuranta ja data." },
-  { value: "ATP-LUOKITUS", label: "Elintarvikehyväksytty ja luokiteltu kalusto." },
-  { value: "24/7", label: "Suora yhteys päivystävään ajojärjestelyyn." },
+  { value: "ATP-LUOKITUS", label: "ATP-luokiteltu ja elintarvikehyväksytty kalusto." },
+  { value: "24/7 AJOJÄRJESTELY", label: "Suora yhteys päivystävään ajojärjestelyyn." },
 ];
 
 export function ProofStrip() {
