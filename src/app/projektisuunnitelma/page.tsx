@@ -18,22 +18,22 @@ const brandQaItems = [
   {
     label: "Logo Production Pack",
     status: "PASS",
-    detail: "Navy #0F2C59, red #D94125, white #FFFFFF, navy R + punainen oikealle osoittava nuoli. Flat/clean, ei gradientteja tai varjoja.",
+    detail: "Reitti A:n mukainen: navy #0F2C59, red #D94125, white #FFFFFF, R/chevron-järjestelmä ja RANTAKAULIO-wordmark. Flat/clean, ei gradientteja tai ydinpaletin ulkopuolisia värimuunnoksia.",
   },
   {
     label: "Workwear-mockupit",
     status: "PASS",
-    detail: "Brändimerkinnät noudattavat lukittua navy/red/white-linjaa. Huomiokeltainen turvavaate on tuotteen/suojavaatetuksen väri, ei uusi brändiväri.",
+    detail: "Nykyinen hi-vis-linja kuuluu hyväksyttyyn Reitti A -pakettiin. Turva-oranssi on vain turvallisuusvaatetuksen funktionaalinen väri, ei markkinointipalettiin lisättävä brändiväri.",
   },
   {
     label: "Vehicle Livery -mockupit",
-    status: "TARKISTA",
-    detail: "Vaaleansininen cab-/lasipinta sallitaan vain ajoneuvon lasina tai teknisenä havainneväriä. Jos se on tarkoitettu teippausgrafiikaksi, se poistetaan tai vaihdetaan ydinaletin väriin ennen asiakasnäyttöä.",
+    status: "PASS",
+    detail: "Nykyinen navy-runko, punaoranssi korostuslinja, täysleveä wordmark ja ohjaamon symboli kuuluvat Reitti A:n tuotantolinjaan. Mahdollinen vaaleansininen renderöintipinta saa kuvata vain lasia/teknistä pintaa — ei teippausgrafiikkaa.",
   },
   {
     label: "Valokuvat / kuvamaailma",
-    status: "HOLD",
-    detail: "Kuvavalinnat lukitaan vasta strategisen Reitti A/B -päätöksen jälkeen. Ennen päätöstä asiakkaalle ei esitetä yhtä kuvamaailmaa lopullisena brändiratkaisuna.",
+    status: "TARKISTA",
+    detail: "Strateginen Reitti A on lukittu, joten kuvat eivät saa rakentaa kilpailevaa monokromi+syaani-identiteettiä. Erillistä valokuvauksen tyyliopasta ei kuitenkaan ole vielä määritelty, joten jokainen asiakasnäyttöön tuleva kuva tarkistetaan konventionaalisen, luotettavan B2B-linjan mukaan.",
   },
 ];
 
@@ -75,14 +75,14 @@ export default function ProjectPlanPage() {
                 Visual QA gate · asiakasnäyttö
               </div>
               <h2 id="brand-visual-qa-title" style={{ margin: 0, fontSize: 24, lineHeight: 1.1 }}>
-                Näytä vain lukitun Rantakaulio-brändilinjan materiaaleja
+                Reitti A – Konventio-strategia lukittu 10.9.2026
               </h2>
             </div>
-            <strong style={{ color: "#0f2c59" }}>2 PASS · 1 TARKISTA · 1 HOLD</strong>
+            <strong style={{ color: "#0f2c59" }}>3 PASS · 1 TARKISTA</strong>
           </div>
 
-          <p style={{ margin: "0 0 16px", maxWidth: 900, color: "#5e6875", lineHeight: 1.55 }}>
-            Lukittu visuaalinen järjestelmä: navy #0F2C59 · red #D94125 · white #FFFFFF · navy R + punainen oikealle osoittava nuoli · puhdas vektori · ei gradientteja/varjoja. Kuvamaailman strateginen Reitti A/B käsitellään erillisenä päätöksenä.
+          <p style={{ margin: "0 0 16px", maxWidth: 980, color: "#5e6875", lineHeight: 1.55 }}>
+            Tuotantoon vietävä linja: laivastonsininen #0F2C59 · punaoranssi #D94125 · valkoinen #FFFFFF · R/chevron-nuolisymboli · RANTAKAULIO-wordmark · hi-vis vain turvallisuusvaatetuksessa. Aiempi monokromi+syaani / ei-nuolta -Reitti B ei kuulu asiakkaalle esitettävään ratkaisuun.
           </p>
 
           <div
@@ -120,8 +120,29 @@ export default function ProjectPlanPage() {
             ))}
           </div>
 
+          <div
+            style={{
+              marginTop: 16,
+              padding: 16,
+              background: "#0f2c59",
+              color: "#ffffff",
+              display: "grid",
+              gridTemplateColumns: "minmax(0, 1fr) auto",
+              gap: 20,
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <strong style={{ display: "block", marginBottom: 4 }}>Seuraava prioriteetti · digitaalinen data-UI-kieli</strong>
+              <span style={{ color: "rgba(255,255,255,.78)", lineHeight: 1.5 }}>
+                Johda dashboard-, live-lämpötila-, lämpötilakäyrä- ja chain-of-custody-komponentit samasta Reitti A -identiteetistä. Tämä vastaa suoraan ostokriteeriin #2: reaaliaikainen näkyvyys ja dataintegraatio.
+              </span>
+            </div>
+            <strong style={{ color: "#ffffff", whiteSpace: "nowrap" }}>NEXT</strong>
+          </div>
+
           <p style={{ margin: "14px 0 0", fontSize: 13, color: "#5e6875" }}>
-            Asiakkaalle ei esitetä vaihtoehtoisia värejä, legacy-mockupeja tai keskeneräisiä visuaaleja ilman selkeää “konsepti / ei lopullinen” -merkintää.
+            Asiakkaalle ei esitetä Reitti B -väritystä, legacy-mockupeja, vaihtoehtoisia logoja tai keskeneräisiä visuaaleja ilman selkeää “konsepti / ei lopullinen” -merkintää. 5 hengen mockup-validointitestiä ei ajettu ennen Reitti A -päätöstä; tämä kirjataan riskinä, ei avoimena brändipäätöksenä.
           </p>
         </div>
       </section>
