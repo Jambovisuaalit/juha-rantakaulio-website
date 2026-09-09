@@ -26,7 +26,8 @@ type ProjectState = {
   phases: Phase[];
 };
 
-const STORAGE_KEY = "rantakaulio-project-plan-v1";
+const STORAGE_KEY = "rantakaulio-project-plan-v2";
+const LEGACY_STORAGE_KEY = "rantakaulio-project-plan-v1";
 const statuses: TaskStatus[] = ["Ei aloitettu", "Työn alla", "Odottaa asiakkaalta", "Valmis"];
 
 const initialState: ProjectState = {
@@ -47,11 +48,11 @@ const initialState: ProjectState = {
         },
         {
           id: "lock-brand-route",
-          title: "Brändin strategisen suunnan Reitti A/B lukitus",
+          title: "Brändin strateginen suunta lukittu — Reitti A",
           owner: "Juha Rantakaulio Oy + GhoulHouse",
-          due: "",
-          status: "Odottaa asiakkaalta",
-          notes: "Päätös ohjaa lopullista kuvamateriaalia ja tuotantoaineistoja.",
+          due: "2026-09-10",
+          status: "Valmis",
+          notes: "Päätös 10.9.2026: Konventio-strategia. Nykyinen laivastonsininen + punaoranssi + valkoinen, R/chevron-nuolisymboli ja hi-vis-linja viedään tuotantoon. Reitti B ei kuulu asiakkaalle esitettävään ratkaisuun. 5 hengen mockup-validointitestiä ei ajettu ennen päätöstä.",
         },
         {
           id: "lock-kickoff",
@@ -72,33 +73,41 @@ const initialState: ProjectState = {
           id: "brand-lock",
           title: "Logo- ja brändisuunnan final lock",
           owner: "GhoulHouse",
-          due: "",
-          status: "Ei aloitettu",
-          notes: "Varmistetaan valitun suunnan johdonmukaisuus ennen exportteja.",
+          due: "2026-09-10",
+          status: "Valmis",
+          notes: "Reitti A lukittu: navy #0F2C59, red #D94125, white #FFFFFF, R/chevron-järjestelmä, RANTAKAULIO-wordmark ja hi-vis vain turvallisuusvaatetuksessa.",
         },
         {
           id: "brand-pack",
           title: "Logo Production Pack + brändiohjeistus",
           owner: "GhoulHouse",
           due: "",
-          status: "Ei aloitettu",
-          notes: "Tuotantoon soveltuvat masterit ja exportit.",
+          status: "Työn alla",
+          notes: "Nykyinen paketti on visuaalisesti hyväksytty. Vahvista vielä suoja-alue/minimikoko sekä tuotantoformaatit ennen fyysisiä paino- tai teippaustilauksia.",
         },
         {
           id: "brand-livery",
           title: "Ajoneuvoteippauksen konsepti",
           owner: "GhoulHouse",
           due: "",
-          status: "Ei aloitettu",
-          notes: "Fyysinen teippaus ei sisälly tarjoukseen.",
+          status: "Valmis",
+          notes: "Reitti A:n navy-runko, punaoranssi korostuslinja, täysleveä wordmark ja ohjaamon symboli hyväksytty konseptiksi. Mahdollinen vaaleansininen renderöintipinta ei ole brändigrafiikkaa. Fyysinen teippaus ei sisälly tarjoukseen.",
         },
         {
           id: "brand-workwear",
           title: "Työvaatteiden mockupit",
           owner: "GhoulHouse",
           due: "",
-          status: "Ei aloitettu",
-          notes: "Fyysiset vaate- ja painatuskulut eivät sisälly tarjoukseen.",
+          status: "Valmis",
+          notes: "Nykyinen työvaatelinja hyväksytty. Hi-vis-oranssi on funktionaalinen turvallisuusväri, ei markkinointipaletti. Fyysiset vaate- ja painatuskulut eivät sisälly tarjoukseen.",
+        },
+        {
+          id: "brand-photo",
+          title: "Valokuvien asiakasnäyttö-QA",
+          owner: "GhoulHouse",
+          due: "",
+          status: "Työn alla",
+          notes: "Reitti A on lukittu, mutta erillistä valokuvauksen tyyliopasta ei ole määritelty. Näytä vain kuvia, jotka tukevat luotettavaa, operatiivista B2B-linjaa eivätkä rakenna kilpailevaa Reitti B -identiteettiä.",
         },
       ],
     },
@@ -107,6 +116,14 @@ const initialState: ProjectState = {
       title: "Website",
       description: "Rantakaulion uuden sivuston sisältö, design, toteutus, QA ja julkaisuvalmius.",
       tasks: [
+        {
+          id: "web-data-ui",
+          title: "Data-UI-kieli ja live-lämpötilavisualisointi",
+          owner: "GhoulHouse",
+          due: "",
+          status: "Työn alla",
+          notes: "Seuraava prioriteetti. Johda dashboard-, lämpötilakäyrä- ja chain-of-custody-komponentit Reitti A -identiteetistä. Vastaa suoraan ostokriteeriin #2: reaaliaikainen näkyvyys / dataintegraatio.",
+        },
         {
           id: "web-scope",
           title: "Sivurakenteen ja sisältötekstien lukitus",
@@ -238,9 +255,17 @@ export function ProjectPlanner() {
       if (saved) {
         const parsed: unknown = JSON.parse(saved);
         if (isProjectState(parsed)) setData(parsed);
+      } else {
+        const legacy = window.localStorage.getItem(LEGACY_STORAGE_KEY);
+        if (legacy) {
+          const parsedLegacy: unknown = JSON.parse(legacy);
+          if (isProjectState(parsedLegacy)) {
+            setMessage("Projektisuunnitelma päivitettiin Reitti A -päätökseen. Vanha selainversio säilyy erillisenä varmuuskopiona.");
+          }
+        }
       }
     } catch {
-      setMessage("Tallennetun version lukeminen epäonnistui. Oletusversio avattiin.");
+      setMessage("Tallennetun version lukeminen epäonnistui. Canonical projektiversio avattiin.");
     } finally {
       setReady(true);
     }
@@ -372,7 +397,7 @@ export function ProjectPlanner() {
   }
 
   function resetPlan() {
-    if (!window.confirm("Palautetaanko alkuperäinen projektisuunnitelma? Nykyiset muutokset korvataan.")) return;
+    if (!window.confirm("Palautetaanko canonical projektisuunnitelma? Nykyiset muutokset korvataan.")) return;
     setData(initialState);
     setStatusFilter("Kaikki");
     setOwnerFilter("Kaikki");
