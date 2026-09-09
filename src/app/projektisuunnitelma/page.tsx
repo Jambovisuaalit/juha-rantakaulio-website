@@ -30,6 +30,11 @@ const brandQaItems = [
     status: "TARKISTA",
     detail: "Vaaleansininen cab-/lasipinta sallitaan vain ajoneuvon lasina tai teknisenä havainneväriä. Jos se on tarkoitettu teippausgrafiikaksi, se poistetaan tai vaihdetaan ydinaletin väriin ennen asiakasnäyttöä.",
   },
+  {
+    label: "Valokuvat / kuvamaailma",
+    status: "HOLD",
+    detail: "Kuvavalinnat lukitaan vasta strategisen Reitti A/B -päätöksen jälkeen. Ennen päätöstä asiakkaalle ei esitetä yhtä kuvamaailmaa lopullisena brändiratkaisuna.",
+  },
 ];
 
 export default function ProjectPlanPage() {
@@ -73,11 +78,11 @@ export default function ProjectPlanPage() {
                 Näytä vain lukitun Rantakaulio-brändilinjan materiaaleja
               </h2>
             </div>
-            <strong style={{ color: "#0f2c59" }}>2 PASS · 1 TARKISTA</strong>
+            <strong style={{ color: "#0f2c59" }}>2 PASS · 1 TARKISTA · 1 HOLD</strong>
           </div>
 
           <p style={{ margin: "0 0 16px", maxWidth: 900, color: "#5e6875", lineHeight: 1.55 }}>
-            Lukittu linja: navy #0F2C59 · red #D94125 · white #FFFFFF · navy R + punainen oikealle osoittava nuoli · puhdas vektori · ei gradientteja/varjoja.
+            Lukittu visuaalinen järjestelmä: navy #0F2C59 · red #D94125 · white #FFFFFF · navy R + punainen oikealle osoittava nuoli · puhdas vektori · ei gradientteja/varjoja. Kuvamaailman strateginen Reitti A/B käsitellään erillisenä päätöksenä.
           </p>
 
           <div
