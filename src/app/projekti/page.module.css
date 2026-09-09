@@ -1,0 +1,494 @@
+.page {
+  --navy: #0f2c59;
+  --red: #d94125;
+  --ink: #111820;
+  --muted: #5e6875;
+  --line: #dfe4ea;
+  --paper: #f6f8fa;
+  --white: #ffffff;
+  background: var(--white);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.hero {
+  background: var(--navy);
+  color: var(--white);
+  padding: 28px 20px 72px;
+}
+
+.heroInner,
+.sectionInner,
+.ctaInner {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+}
+
+.eyebrow,
+.preview,
+.kicker,
+.sectionNumber,
+.cardNumber {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.preview {
+  font-size: 0.7rem;
+  color: rgb(255 255 255 / 70%);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.7fr);
+  gap: clamp(40px, 7vw, 96px);
+  align-items: end;
+  padding-top: clamp(56px, 8vw, 104px);
+}
+
+.kicker {
+  margin: 0 0 18px;
+  color: #aabbd4;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 900px;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.45rem, 6vw, 5.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 28px 0 0;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1.6;
+  color: rgb(255 255 255 / 78%);
+}
+
+.meta {
+  margin: 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgb(255 255 255 / 24%);
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 24%);
+}
+
+.meta dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #aabbd4;
+}
+
+.meta dd {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.section {
+  padding: clamp(60px, 8vw, 104px) 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionHeading {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 34px;
+}
+
+.sectionHeading h2,
+.ctaInner h2 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 4vw, 3.65rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.sectionNumber,
+.cardNumber {
+  color: var(--red);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.investmentGrid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: 24px;
+}
+
+.totalCard {
+  display: grid;
+  align-content: center;
+  min-height: 260px;
+  padding: clamp(28px, 5vw, 52px);
+  background: var(--red);
+  color: var(--white);
+}
+
+.totalCard span {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.totalCard strong {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(3.4rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.totalCard small {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.priceBreakdown {
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.priceBreakdown > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.priceBreakdown > div:last-child {
+  border-bottom: 0;
+}
+
+.priceBreakdown span {
+  color: var(--muted);
+}
+
+.priceBreakdown strong {
+  white-space: nowrap;
+}
+
+.mathRow {
+  background: var(--paper);
+}
+
+.deliveryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.deliveryCard {
+  min-height: 360px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.deliveryCard h3 {
+  margin: 22px 0 24px;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.deliveryCard ul,
+.exclusionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.deliveryCard li,
+.exclusionList li {
+  position: relative;
+  padding: 13px 0 13px 22px;
+  border-top: 1px solid var(--line);
+  line-height: 1.5;
+}
+
+.deliveryCard li::before,
+.exclusionList li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: 800;
+}
+
+.darkSection {
+  padding: clamp(60px, 8vw, 104px) 20px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.lightHeading {
+  margin-bottom: 44px;
+}
+
+.processList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid rgb(255 255 255 / 18%);
+  border-bottom: 1px solid rgb(255 255 255 / 18%);
+}
+
+.processList li {
+  position: relative;
+  min-height: 160px;
+  padding: 24px 20px;
+  border-right: 1px solid rgb(255 255 255 / 18%);
+}
+
+.processList li:last-child {
+  border-right: 0;
+}
+
+.processList span {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  color: var(--red);
+  font-size: 0.72rem;
+}
+
+.processList strong {
+  display: block;
+  margin-top: 58px;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(44px, 8vw, 96px);
+}
+
+.termRows {
+  border-top: 1px solid var(--line);
+}
+
+.termRows > div {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.termRows span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.ctaSection {
+  padding: clamp(72px, 10vw, 132px) 20px;
+  background: var(--paper);
+}
+
+.ctaInner {
+  max-width: 860px;
+  text-align: center;
+}
+
+.ctaInner .eyebrow {
+  color: var(--red);
+}
+
+.ctaInner h2 {
+  margin-top: 14px;
+}
+
+.ctaInner p {
+  max-width: 650px;
+  margin: 22px auto 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.6;
+}
+
+.primaryCta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 58px;
+  margin-top: 32px;
+  padding: 16px 24px;
+  background: var(--red);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 800;
+  border: 2px solid var(--red);
+  transition: background-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.primaryCta:hover {
+  background: transparent;
+  color: var(--red);
+}
+
+.primaryCta:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 4px;
+}
+
+.primaryCta:active {
+  transform: translateY(1px);
+}
+
+.ctaInner small {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .heroGrid,
+  .investmentGrid,
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+
+  .meta {
+    max-width: 620px;
+  }
+
+  .deliveryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .deliveryCard {
+    min-height: 0;
+  }
+
+  .processList {
+    grid-template-columns: 1fr;
+  }
+
+  .processList li {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0;
+    border-right: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 18%);
+  }
+
+  .processList li:last-child {
+    border-bottom: 0;
+  }
+
+  .processList strong {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    padding-inline: 16px;
+    padding-bottom: 52px;
+  }
+
+  .section,
+  .darkSection,
+  .ctaSection {
+    padding-inline: 16px;
+  }
+
+  .topline {
+    align-items: flex-start;
+  }
+
+  .preview {
+    max-width: 150px;
+    text-align: right;
+  }
+
+  .heroGrid {
+    padding-top: 48px;
+  }
+
+  .meta div {
+    grid-template-columns: 92px 1fr;
+  }
+
+  .sectionHeading {
+    align-items: flex-start;
+  }
+
+  .priceBreakdown > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px;
+  }
+
+  .priceBreakdown strong {
+    white-space: normal;
+  }
+
+  .termRows > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .primaryCta {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryCta {
+    transition: none;
+  }
+}
