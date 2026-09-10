@@ -18,22 +18,22 @@ const brandQaItems = [
   {
     label: "Logo Production Pack",
     status: "PASS",
-    detail: "Reitti A:n mukainen: navy #0F2C59, red #D94125, white #FFFFFF, R/chevron-järjestelmä ja RANTAKAULIO-wordmark. Flat/clean, ei gradientteja tai ydinpaletin ulkopuolisia värimuunnoksia.",
+    detail: "Sisäinen QA PASS Reitti A -suositukselle: navy #0F2C59, red #D94125, white #FFFFFF, R/chevron-järjestelmä ja RANTAKAULIO-wordmark. Ei gradientteja tai ydinpaletin ulkopuolisia värimuunnoksia.",
   },
   {
     label: "Workwear-mockupit",
     status: "PASS",
-    detail: "Nykyinen hi-vis-linja kuuluu hyväksyttyyn Reitti A -pakettiin. Turva-oranssi on vain turvallisuusvaatetuksen funktionaalinen väri, ei markkinointipalettiin lisättävä brändiväri.",
+    detail: "Sisäinen QA PASS Reitti A -suositukselle. Turva-oranssi on vain turvallisuusvaatetuksen funktionaalinen väri, ei markkinointipalettiin lisättävä brändiväri.",
   },
   {
     label: "Vehicle Livery -mockupit",
     status: "PASS",
-    detail: "Nykyinen navy-runko, punaoranssi korostuslinja, täysleveä wordmark ja ohjaamon symboli kuuluvat Reitti A:n tuotantolinjaan. Mahdollinen vaaleansininen renderöintipinta saa kuvata vain lasia/teknistä pintaa — ei teippausgrafiikkaa.",
+    detail: "Sisäinen QA PASS Reitti A -suositukselle: navy-runko, punaoranssi korostuslinja, täysleveä wordmark ja ohjaamon symboli. Mahdollinen vaaleansininen renderöintipinta saa kuvata vain lasia/teknistä pintaa — ei teippausgrafiikkaa.",
   },
   {
     label: "Valokuvat / kuvamaailma",
     status: "TARKISTA",
-    detail: "Strateginen Reitti A on lukittu, joten kuvat eivät saa rakentaa kilpailevaa monokromi+syaani-identiteettiä. Erillistä valokuvauksen tyyliopasta ei kuitenkaan ole vielä määritelty, joten jokainen asiakasnäyttöön tuleva kuva tarkistetaan konventionaalisen, luotettavan B2B-linjan mukaan.",
+    detail: "Reitti A on GhoulHousen sisäinen suositus, mutta asiakkaan virallinen hyväksyntä puuttuu. Kuvia voidaan arvioida Reitti A -suositusta vasten, mutta lopullista photography-linjaa ei merkitä lukituksi ennen asiakkaan päätöstä.",
   },
 ];
 
@@ -90,17 +90,17 @@ export default function ProjectPlanPage() {
                   marginBottom: 6,
                 }}
               >
-                Visual QA gate · asiakasnäyttö
+                Visual QA gate · sisäinen arvio
               </div>
               <h2 id="brand-visual-qa-title" style={{ margin: 0, fontSize: 24, lineHeight: 1.1 }}>
-                Reitti A – Konventio-strategia lukittu 10.9.2026
+                Reitti A – GhoulHousen suositus · asiakkaan hyväksyntä avoin
               </h2>
             </div>
             <strong style={{ color: "#0f2c59" }}>3 PASS · 1 TARKISTA</strong>
           </div>
 
           <p style={{ margin: "0 0 16px", maxWidth: 980, color: "#5e6875", lineHeight: 1.55 }}>
-            Tuotantoon vietävä linja: laivastonsininen #0F2C59 · punaoranssi #D94125 · valkoinen #FFFFFF · R/chevron-nuolisymboli · RANTAKAULIO-wordmark · hi-vis vain turvallisuusvaatetuksessa. Aiempi monokromi+syaani / ei-nuolta -Reitti B ei kuulu asiakkaalle esitettävään ratkaisuun.
+            Sisäisesti suositeltu linja: laivastonsininen #0F2C59 · punaoranssi #D94125 · valkoinen #FFFFFF · R/chevron-nuolisymboli · RANTAKAULIO-wordmark · hi-vis vain turvallisuusvaatetuksessa. Materiaalit voidaan näyttää asiakkaalle suosituksena, mutta niitä ei merkitä lopullisesti lukituiksi ennen asiakkaan virallista Reitti A/B -hyväksyntää.
           </p>
 
           <div
@@ -151,16 +151,16 @@ export default function ProjectPlanPage() {
             }}
           >
             <div>
-              <strong style={{ display: "block", marginBottom: 4 }}>Seuraava prioriteetti · digitaalinen data-UI-kieli</strong>
+              <strong style={{ display: "block", marginBottom: 4 }}>Data-UI-kieli · valmisteltu jatkolohko</strong>
               <span style={{ color: "rgba(255,255,255,.78)", lineHeight: 1.5 }}>
-                Johda dashboard-, live-lämpötila-, lämpötilakäyrä- ja chain-of-custody-komponentit samasta Reitti A -identiteetistä. Tämä vastaa suoraan ostokriteeriin #2: reaaliaikainen näkyvyys ja dataintegraatio.
+                Dashboard-, live-lämpötila-, lämpötilakäyrä- ja chain-of-custody-komponenttien suunta on valmisteltu ostokriteeriä #2 varten, mutta sitä ei käsitellä projektin seuraavana tehtävänä ennen Lukitus-vaiheen kolmen kriittisen tehtävän etenemistä.
               </span>
             </div>
-            <strong style={{ color: "#ffffff", whiteSpace: "nowrap" }}>NEXT</strong>
+            <strong style={{ color: "#ffffff", whiteSpace: "nowrap" }}>HOLD</strong>
           </div>
 
           <p style={{ margin: "14px 0 0", fontSize: 13, color: "#5e6875" }}>
-            Asiakkaalle ei esitetä Reitti B -väritystä, legacy-mockupeja, vaihtoehtoisia logoja tai keskeneräisiä visuaaleja ilman selkeää “konsepti / ei lopullinen” -merkintää. 5 hengen mockup-validointitestiä ei ajettu ennen Reitti A -päätöstä; tämä kirjataan riskinä, ei avoimena brändipäätöksenä.
+            Asiakkaalle ei esitetä Reitti B -väritystä, legacy-mockupeja, vaihtoehtoisia logoja tai keskeneräisiä visuaaleja lopullisina ratkaisuina. Reitti A on 10.9.2026 tehty GhoulHousen sisäinen suositus; asiakkaan virallinen hyväksyntä on edelleen avoin projektitehtävä.
           </p>
         </div>
       </section>
@@ -179,7 +179,7 @@ export default function ProjectPlanPage() {
           <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "baseline", flexWrap: "wrap" }}>
             <div>
               <div style={{ color: "#d94125", fontSize: 12, fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase", marginBottom: 6 }}>
-                Typography QA · lukittu 10.9.2026
+                Typography QA · sisäinen tuotantopäätös 10.9.2026
               </div>
               <h2 id="typography-qa-title" style={{ margin: 0, color: "#0f2c59", fontSize: 28, lineHeight: 1.08, fontWeight: 800 }}>
                 Toinen leikkaus: Montserrat 400 / 500
