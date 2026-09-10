@@ -26,8 +26,8 @@ type ProjectState = {
   phases: Phase[];
 };
 
-const STORAGE_KEY = "rantakaulio-project-plan-v4";
-const LEGACY_STORAGE_KEYS = ["rantakaulio-project-plan-v3", "rantakaulio-project-plan-v2", "rantakaulio-project-plan-v1"];
+const STORAGE_KEY = "rantakaulio-project-plan-v5";
+const LEGACY_STORAGE_KEYS = ["rantakaulio-project-plan-v4", "rantakaulio-project-plan-v3", "rantakaulio-project-plan-v2", "rantakaulio-project-plan-v1"];
 const statuses: TaskStatus[] = ["Ei aloitettu", "Työn alla", "Odottaa asiakkaalta", "Valmis"];
 const criticalTaskIds = new Set(["lock-kickoff", "lock-brand-route", "lock-offer"]);
 
@@ -37,7 +37,7 @@ const initialState: ProjectState = {
     {
       id: "lock",
       title: "Lukitus",
-      description: "Kriittinen polku: tarjous, asiakkaan brändihyväksyntä ja aloituspalaveri ennen tehokasta etenemistä muihin vaiheisiin.",
+      description: "Kriittinen polku: Reitti A on hyväksytty 10.9.2026; jäljellä ovat tarjouksen hyväksyntä ja aloituspalaveri ennen tehokasta etenemistä muihin vaiheisiin.",
       tasks: [
         {
           id: "lock-kickoff",
@@ -51,9 +51,9 @@ const initialState: ProjectState = {
           id: "lock-brand-route",
           title: "Brändin strategisen suunnan Reitti A/B lukitus",
           owner: "Juha Rantakaulio Oy + GhoulHouse",
-          due: "",
-          status: "Odottaa asiakkaalta",
-          notes: "Päätös ohjaa lopullista kuvamateriaalia ja tuotantoaineistoja. Huom: GhoulHousen sisäinen suositus on jo Reitti A (konventio, 10.9.2026) — asiakkaan virallinen hyväksyntä puuttuu.",
+          due: "2026-09-10",
+          status: "Valmis",
+          notes: "A/B-brändipäätös ratkaistu 10.9.2026: Reitti A – Konventio-strategia valittu. Canonical päätös: Notion ‘RANTAKAULIO – Brändipaketti ja tuotantomateriaalit’, kohta 8.",
         },
         {
           id: "lock-offer",
@@ -68,7 +68,7 @@ const initialState: ProjectState = {
     {
       id: "brand",
       title: "Brändi",
-      description: "Visuaalinen identiteetti ja tuotantoon vietävät brändimateriaalit asiakkaan virallisen brändilukituksen jälkeen.",
+      description: "Visuaalinen identiteetti ja tuotantoon vietävät brändimateriaalit hyväksytyn Reitti A – Konventio-strategian mukaisesti.",
       tasks: [
         {
           id: "brand-livery",
@@ -92,7 +92,7 @@ const initialState: ProjectState = {
           owner: "GhoulHouse",
           due: "",
           status: "Ei aloitettu",
-          notes: "Varmistetaan valitun suunnan johdonmukaisuus ennen exportteja.",
+          notes: "Varmistetaan hyväksytyn Reitti A -suunnan johdonmukaisuus ennen exportteja.",
         },
         {
           id: "brand-workwear",
@@ -201,7 +201,7 @@ const initialState: ProjectState = {
           owner: "GhoulHouse",
           due: "",
           status: "Työn alla",
-          notes: "Handoff-kansiorakenne ja READY/BLOCKED-manifesti valmisteltu 10.9.2026. FINAL-v1 lukitaan vasta asiakkaan virallisen Reitti A/B -hyväksynnän, markkinointinimen/descriptorin vahvistuksen ja standalone R/chevron -vektorimasterin valmistumisen jälkeen. Supplier-kohtaiset spot-värit validoidaan valmistajan kanssa; niitä ei keksitä.",
+          notes: "Handoff-kansiorakenne ja READY/BLOCKED-manifesti valmisteltu 10.9.2026. Reitti A – Konventio-strategia on hyväksytty eikä enää blokkaa handoffia. FINAL-v1 odottaa vielä markkinointinimen/descriptorin vahvistusta, standalone R/chevron -vektorimasteria sekä tarvittavia tuotanto- ja digital-exportteja. Supplier-kohtaiset spot-värit validoidaan valmistajan kanssa; niitä ei keksitä.",
         },
         {
           id: "handoff-web",
@@ -243,7 +243,7 @@ export function ProjectPlanner() {
       } else {
         const hasLegacyVersion = LEGACY_STORAGE_KEYS.some((key) => window.localStorage.getItem(key));
         if (hasLegacyVersion) {
-          setMessage("Canonical 18-tehtävän projektiversio avattiin. Aiemmat selainversiot säilyvät erillisinä varmuuskopioina.");
+          setMessage("Canonical 18-tehtävän projektiversio päivitettiin hyväksyttyyn Reitti A -päätökseen. Aiemmat selainversiot säilyvät erillisinä varmuuskopioina.");
         }
       }
     } catch {
@@ -265,6 +265,7 @@ export function ProjectPlanner() {
 
   const allTasks = useMemo(() => data.phases.flatMap((phase) => phase.tasks), [data]);
   const criticalTasks = allTasks.filter((task) => criticalTaskIds.has(task.id));
+  const criticalOpen = criticalTasks.filter((task) => task.status !== "Valmis").length;
   const completed = allTasks.filter((task) => task.status === "Valmis").length;
   const progress = allTasks.length ? Math.round((completed / allTasks.length) * 100) : 0;
   const today = new Date();
@@ -403,7 +404,7 @@ export function ProjectPlanner() {
                 onChange={(event) => setData((current) => ({ ...current, projectName: event.target.value }))}
                 aria-label="Projektin nimi"
               />
-              <p className={styles.lead}>18 tehtävän canonical projektisuunnitelma. Lukitus-vaihe on kriittinen polku; muut vaiheet käynnistetään tehokkaasti vasta tarjouksen, asiakkaan brändihyväksynnän ja aloituspalaverin jälkeen.</p>
+              <p className={styles.lead}>18 tehtävän canonical projektisuunnitelma. Reitti A – Konventio-strategia on hyväksytty 10.9.2026; Lukitus-vaiheessa ovat vielä avoinna tarjouksen hyväksyntä ja aloituspalaveri.</p>
             </div>
             <div className={styles.progressPanel}>
               <div className={styles.progressValue}>{progress}%</div>
@@ -422,7 +423,7 @@ export function ProjectPlanner() {
           <div style={{ marginBottom: 18, border: "1px solid #d94125", background: "#fff8f6", padding: 16 }}>
             <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "baseline", marginBottom: 12 }}>
               <strong style={{ color: "#0f2c59" }}>Kriittinen polku · Lukitus</strong>
-              <span style={{ color: "#d94125", fontSize: 12, fontWeight: 700 }}>3 tehtävää ennen tehokasta jatkoa</span>
+              <span style={{ color: "#d94125", fontSize: 12, fontWeight: 700 }}>{criticalOpen} avointa lukitustehtävää</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 10 }}>
               {criticalTasks.map((task) => (
