@@ -26,9 +26,10 @@ type ProjectState = {
   phases: Phase[];
 };
 
-const STORAGE_KEY = "rantakaulio-project-plan-v2";
-const LEGACY_STORAGE_KEY = "rantakaulio-project-plan-v1";
+const STORAGE_KEY = "rantakaulio-project-plan-v3";
+const LEGACY_STORAGE_KEYS = ["rantakaulio-project-plan-v2", "rantakaulio-project-plan-v1"];
 const statuses: TaskStatus[] = ["Ei aloitettu", "Työn alla", "Odottaa asiakkaalta", "Valmis"];
+const criticalTaskIds = new Set(["lock-kickoff", "lock-brand-route", "lock-offer"]);
 
 const initialState: ProjectState = {
   projectName: "Juha Rantakaulio Oy × GhoulHouse Oy",
@@ -36,24 +37,8 @@ const initialState: ProjectState = {
     {
       id: "lock",
       title: "Lukitus",
-      description: "Hyväksyntä, strategiset päätökset ja projektin käynnistyksen edellytykset.",
+      description: "Kriittinen polku: tarjous, asiakkaan brändihyväksyntä ja aloituspalaveri ennen tehokasta etenemistä muihin vaiheisiin.",
       tasks: [
-        {
-          id: "lock-offer",
-          title: "Tarjouksen hyväksyntä",
-          owner: "Juha Rantakaulio Oy",
-          due: "2026-09-17",
-          status: "Odottaa asiakkaalta",
-          notes: "Canonical tarjous: /projekti ja lopullinen 5 370 € + ALV PDF.",
-        },
-        {
-          id: "lock-brand-route",
-          title: "Brändin strateginen suunta lukittu — Reitti A",
-          owner: "Juha Rantakaulio Oy + GhoulHouse",
-          due: "2026-09-10",
-          status: "Valmis",
-          notes: "Päätös 10.9.2026: Konventio-strategia. Nykyinen laivastonsininen + punaoranssi + valkoinen, R/chevron-nuolisymboli ja hi-vis-linja viedään tuotantoon. Reitti B ei kuulu asiakkaalle esitettävään ratkaisuun. 5 hengen mockup-validointitestiä ei ajettu ennen päätöstä.",
-        },
         {
           id: "lock-kickoff",
           title: "Aloituspalaveri, vastuut ja materiaalioikeudet",
@@ -62,52 +47,60 @@ const initialState: ProjectState = {
           status: "Ei aloitettu",
           notes: "Lukitaan omistajat, päätöksentekijät, palautekanava ja hyväksyntärytmi.",
         },
+        {
+          id: "lock-brand-route",
+          title: "Brändin strategisen suunnan Reitti A/B lukitus",
+          owner: "Juha Rantakaulio Oy + GhoulHouse",
+          due: "",
+          status: "Odottaa asiakkaalta",
+          notes: "Päätös ohjaa lopullista kuvamateriaalia ja tuotantoaineistoja. Huom: GhoulHousen sisäinen suositus on jo Reitti A (konventio, 10.9.2026) — asiakkaan virallinen hyväksyntä puuttuu.",
+        },
+        {
+          id: "lock-offer",
+          title: "Tarjouksen hyväksyntä",
+          owner: "Juha Rantakaulio Oy",
+          due: "2026-09-17",
+          status: "Odottaa asiakkaalta",
+          notes: "Canonical tarjous: /projekti ja lopullinen 5 370 € + ALV PDF.",
+        },
       ],
     },
     {
       id: "brand",
       title: "Brändi",
-      description: "Visuaalinen identiteetti ja tuotantoon vietävät brändimateriaalit.",
+      description: "Visuaalinen identiteetti ja tuotantoon vietävät brändimateriaalit asiakkaan virallisen brändilukituksen jälkeen.",
       tasks: [
         {
-          id: "brand-lock",
-          title: "Logo- ja brändisuunnan final lock",
+          id: "brand-livery",
+          title: "Ajoneuvoteippauksen konsepti",
           owner: "GhoulHouse",
-          due: "2026-09-10",
-          status: "Valmis",
-          notes: "Reitti A lukittu: navy #0F2C59, red #D94125, white #FFFFFF, R/chevron-järjestelmä, RANTAKAULIO-wordmark ja hi-vis vain turvallisuusvaatetuksessa.",
+          due: "",
+          status: "Ei aloitettu",
+          notes: "Fyysinen teippaus ei sisälly tarjoukseen.",
         },
         {
           id: "brand-pack",
           title: "Logo Production Pack + brändiohjeistus",
           owner: "GhoulHouse",
           due: "",
-          status: "Työn alla",
-          notes: "Nykyinen paketti on visuaalisesti hyväksytty. Vahvista vielä suoja-alue/minimikoko sekä tuotantoformaatit ennen fyysisiä paino- tai teippaustilauksia.",
+          status: "Ei aloitettu",
+          notes: "Tuotantoon soveltuvat masterit ja exportit.",
         },
         {
-          id: "brand-livery",
-          title: "Ajoneuvoteippauksen konsepti",
+          id: "brand-lock",
+          title: "Logo- ja brändisuunnan final lock",
           owner: "GhoulHouse",
           due: "",
-          status: "Valmis",
-          notes: "Reitti A:n navy-runko, punaoranssi korostuslinja, täysleveä wordmark ja ohjaamon symboli hyväksytty konseptiksi. Mahdollinen vaaleansininen renderöintipinta ei ole brändigrafiikkaa. Fyysinen teippaus ei sisälly tarjoukseen.",
+          status: "Ei aloitettu",
+          notes: "Varmistetaan valitun suunnan johdonmukaisuus ennen exportteja.",
         },
         {
           id: "brand-workwear",
           title: "Työvaatteiden mockupit",
           owner: "GhoulHouse",
           due: "",
-          status: "Valmis",
-          notes: "Nykyinen työvaatelinja hyväksytty. Hi-vis-oranssi on funktionaalinen turvallisuusväri, ei markkinointipaletti. Fyysiset vaate- ja painatuskulut eivät sisälly tarjoukseen.",
-        },
-        {
-          id: "brand-photo",
-          title: "Valokuvien asiakasnäyttö-QA",
-          owner: "GhoulHouse",
-          due: "",
-          status: "Työn alla",
-          notes: "Reitti A on lukittu, mutta erillistä valokuvauksen tyyliopasta ei ole määritelty. Näytä vain kuvia, jotka tukevat luotettavaa, operatiivista B2B-linjaa eivätkä rakenna kilpailevaa Reitti B -identiteettiä.",
+          status: "Ei aloitettu",
+          notes: "Fyysiset vaate- ja painatuskulut eivät sisälly tarjoukseen.",
         },
       ],
     },
@@ -117,12 +110,12 @@ const initialState: ProjectState = {
       description: "Rantakaulion uuden sivuston sisältö, design, toteutus, QA ja julkaisuvalmius.",
       tasks: [
         {
-          id: "web-data-ui",
-          title: "Data-UI-kieli ja live-lämpötilavisualisointi",
+          id: "web-qa",
+          title: "Responsiivinen QA + toiminnalliset testit",
           owner: "GhoulHouse",
           due: "",
-          status: "Työn alla",
-          notes: "Seuraava prioriteetti. Johda dashboard-, lämpötilakäyrä- ja chain-of-custody-komponentit Reitti A -identiteetistä. Vastaa suoraan ostokriteeriin #2: reaaliaikainen näkyvyys / dataintegraatio.",
+          status: "Ei aloitettu",
+          notes: "CTA:t, lomakkeet, linkit, saavutettavuuden perustaso ja selaintarkistus.",
         },
         {
           id: "web-scope",
@@ -133,28 +126,20 @@ const initialState: ProjectState = {
           notes: "Varmistetaan palvelut, proof-pisteet, henkilötiedot ja CTA-polut.",
         },
         {
-          id: "web-design",
-          title: "Visuaalinen viimeistely",
-          owner: "GhoulHouse",
-          due: "",
-          status: "Ei aloitettu",
-          notes: "Brändisuunnan mukainen desktop- ja mobile-pass.",
-        },
-        {
-          id: "web-qa",
-          title: "Responsiivinen QA + toiminnalliset testit",
-          owner: "GhoulHouse",
-          due: "",
-          status: "Ei aloitettu",
-          notes: "CTA:t, lomakkeet, linkit, saavutettavuuden perustaso ja selaintarkistus.",
-        },
-        {
           id: "web-launch",
           title: "Tuotantoon viennin hyväksyntä",
           owner: "Juha Rantakaulio Oy + GhoulHouse",
           due: "",
           status: "Ei aloitettu",
           notes: "Domain-kytkentä ja indeksointi tehdään vasta erillisellä GO-päätöksellä.",
+        },
+        {
+          id: "web-design",
+          title: "Visuaalinen viimeistely",
+          owner: "GhoulHouse",
+          due: "",
+          status: "Ei aloitettu",
+          notes: "Brändisuunnan mukainen desktop- ja mobile-pass.",
         },
       ],
     },
@@ -203,6 +188,14 @@ const initialState: ProjectState = {
       description: "Lopullinen luovutus, käyttöaineistot ja projektin päättäminen.",
       tasks: [
         {
+          id: "handoff-social",
+          title: "90 päivän yhteenveto ja jatkopäätös",
+          owner: "GhoulHouse + Juha Rantakaulio Oy",
+          due: "",
+          status: "Ei aloitettu",
+          notes: "Käydään läpi toimitukset, havainnot ja mahdollinen jatko.",
+        },
+        {
           id: "handoff-brand",
           title: "Brändin lopulliset masterit ja exportit",
           owner: "GhoulHouse",
@@ -217,14 +210,6 @@ const initialState: ProjectState = {
           due: "",
           status: "Ei aloitettu",
           notes: "Lukitaan julkaistu versio, käyttöoikeudet ja ylläpitovastuut.",
-        },
-        {
-          id: "handoff-social",
-          title: "90 päivän yhteenveto ja jatkopäätös",
-          owner: "GhoulHouse + Juha Rantakaulio Oy",
-          due: "",
-          status: "Ei aloitettu",
-          notes: "Käydään läpi toimitukset, havainnot ja mahdollinen jatko.",
         },
       ],
     },
@@ -256,16 +241,13 @@ export function ProjectPlanner() {
         const parsed: unknown = JSON.parse(saved);
         if (isProjectState(parsed)) setData(parsed);
       } else {
-        const legacy = window.localStorage.getItem(LEGACY_STORAGE_KEY);
-        if (legacy) {
-          const parsedLegacy: unknown = JSON.parse(legacy);
-          if (isProjectState(parsedLegacy)) {
-            setMessage("Projektisuunnitelma päivitettiin Reitti A -päätökseen. Vanha selainversio säilyy erillisenä varmuuskopiona.");
-          }
+        const hasLegacyVersion = LEGACY_STORAGE_KEYS.some((key) => window.localStorage.getItem(key));
+        if (hasLegacyVersion) {
+          setMessage("Canonical 18-tehtävän projektiversio avattiin. Aiemmat selainversiot säilyvät erillisinä varmuuskopioina.");
         }
       }
     } catch {
-      setMessage("Tallennetun version lukeminen epäonnistui. Canonical projektiversio avattiin.");
+      setMessage("Tallennetun version lukeminen epäonnistui. Canonical 18-tehtävän projektiversio avattiin.");
     } finally {
       setReady(true);
     }
@@ -282,6 +264,7 @@ export function ProjectPlanner() {
   }, [data, ready]);
 
   const allTasks = useMemo(() => data.phases.flatMap((phase) => phase.tasks), [data]);
+  const criticalTasks = allTasks.filter((task) => criticalTaskIds.has(task.id));
   const completed = allTasks.filter((task) => task.status === "Valmis").length;
   const progress = allTasks.length ? Math.round((completed / allTasks.length) * 100) : 0;
   const today = new Date();
@@ -397,7 +380,7 @@ export function ProjectPlanner() {
   }
 
   function resetPlan() {
-    if (!window.confirm("Palautetaanko canonical projektisuunnitelma? Nykyiset muutokset korvataan.")) return;
+    if (!window.confirm("Palautetaanko canonical 18-tehtävän projektisuunnitelma? Nykyiset muutokset korvataan.")) return;
     setData(initialState);
     setStatusFilter("Kaikki");
     setOwnerFilter("Kaikki");
@@ -420,7 +403,7 @@ export function ProjectPlanner() {
                 onChange={(event) => setData((current) => ({ ...current, projectName: event.target.value }))}
                 aria-label="Projektin nimi"
               />
-              <p className={styles.lead}>Jäsennä vaiheet, vastuut, deadlinet ja eteneminen yhdestä näkymästä. Muutokset tallentuvat automaattisesti tähän selaimeen.</p>
+              <p className={styles.lead}>18 tehtävän canonical projektisuunnitelma. Lukitus-vaihe on kriittinen polku; muut vaiheet käynnistetään tehokkaasti vasta tarjouksen, asiakkaan brändihyväksynnän ja aloituspalaverin jälkeen.</p>
             </div>
             <div className={styles.progressPanel}>
               <div className={styles.progressValue}>{progress}%</div>
@@ -436,6 +419,21 @@ export function ProjectPlanner() {
 
       <section className={styles.dashboard}>
         <div className={styles.wrap}>
+          <div style={{ marginBottom: 18, border: "1px solid #d94125", background: "#fff8f6", padding: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "baseline", marginBottom: 12 }}>
+              <strong style={{ color: "#0f2c59" }}>Kriittinen polku · Lukitus</strong>
+              <span style={{ color: "#d94125", fontSize: 12, fontWeight: 700 }}>3 tehtävää ennen tehokasta jatkoa</span>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 10 }}>
+              {criticalTasks.map((task) => (
+                <div key={task.id} style={{ background: "#ffffff", border: "1px solid #ead9d4", padding: 12 }}>
+                  <strong style={{ display: "block", fontSize: 14, marginBottom: 5 }}>{task.title}</strong>
+                  <span style={{ display: "block", color: "#64707d", fontSize: 12 }}>{task.status}{task.due ? ` · ${task.due}` : ""}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className={styles.metrics}>
             <div><strong>{allTasks.length}</strong><span>Tehtäviä</span></div>
             <div><strong>{completed}</strong><span>Valmiina</span></div>
