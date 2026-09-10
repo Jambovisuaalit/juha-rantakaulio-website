@@ -4,7 +4,7 @@ import "./globals.css";
 
 const display = Montserrat({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["400", "500", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
