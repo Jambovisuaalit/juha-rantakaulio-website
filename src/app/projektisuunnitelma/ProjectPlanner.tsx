@@ -26,8 +26,8 @@ type ProjectState = {
   phases: Phase[];
 };
 
-const STORAGE_KEY = "rantakaulio-project-plan-v3";
-const LEGACY_STORAGE_KEYS = ["rantakaulio-project-plan-v2", "rantakaulio-project-plan-v1"];
+const STORAGE_KEY = "rantakaulio-project-plan-v4";
+const LEGACY_STORAGE_KEYS = ["rantakaulio-project-plan-v3", "rantakaulio-project-plan-v2", "rantakaulio-project-plan-v1"];
 const statuses: TaskStatus[] = ["Ei aloitettu", "Työn alla", "Odottaa asiakkaalta", "Valmis"];
 const criticalTaskIds = new Set(["lock-kickoff", "lock-brand-route", "lock-offer"]);
 
@@ -200,8 +200,8 @@ const initialState: ProjectState = {
           title: "Brändin lopulliset masterit ja exportit",
           owner: "GhoulHouse",
           due: "",
-          status: "Ei aloitettu",
-          notes: "Luovutetaan hyväksytyt tuotantoaineistot.",
+          status: "Työn alla",
+          notes: "Handoff-kansiorakenne ja READY/BLOCKED-manifesti valmisteltu 10.9.2026. FINAL-v1 lukitaan vasta asiakkaan virallisen Reitti A/B -hyväksynnän, markkinointinimen/descriptorin vahvistuksen ja standalone R/chevron -vektorimasterin valmistumisen jälkeen. Supplier-kohtaiset spot-värit validoidaan valmistajan kanssa; niitä ei keksitä.",
         },
         {
           id: "handoff-web",
